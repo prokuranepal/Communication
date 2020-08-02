@@ -60,7 +60,7 @@ data['groundspeed'] = _groundspeed
 data['airspeed'] = _airspeed
 
 data = str(data)
-data = "si"+data+"ei"
+
 
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
@@ -70,20 +70,19 @@ print("\r\n now sending \r\n")
 n = 70 # chunk length
 chunks = []
 
-for i in range(0, len(data)+4, n):
+for i in range(0, len(data), n):
     chunks.append(data[i:i+n] )
 
-chunks_count = len(chunks)
 
-# add s{num_chunks_count} at the beginning and e{num_chunks_count} at the end of the string to denote start and end of data. 
-chunks[0] = 's'+str(chunks_count)+chunks[0][2:]
-chunks[chunks_count-1] = chunks[chunks_count-1][0:-1]+str(chunks_count)
+START_DATA = "$st@"
+my_device.send_data(remote_device , START_DATA)
 
-
-
-for i in range(chunks_count):
+for i in range(len(chunks)):
     DATA_TO_SEND = chunks[i]
     my_device.send_data(remote_device , DATA_TO_SEND)
+
+END_DATA = "$ed@"
+my_device.send_data(remote_device,END_DATA)
 
 my_device.close()
 print("\r\nsent\r\n")

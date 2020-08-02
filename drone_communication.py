@@ -73,19 +73,24 @@ chunks = []
 for i in range(0, len(data), n):
     chunks.append(data[i:i+n] )
 
+count = 0
+while True:
+    START_DATA = "$st@"
+    my_device.send_data(remote_device , START_DATA)
 
-START_DATA = "$st@"
-my_device.send_data(remote_device , START_DATA)
+    for i in range(len(chunks)):
+        DATA_TO_SEND = chunks[i]
+        my_device.send_data(remote_device , DATA_TO_SEND)
 
-for i in range(len(chunks)):
-    DATA_TO_SEND = chunks[i]
-    my_device.send_data(remote_device , DATA_TO_SEND)
+    END_DATA = "$ed@"
+    my_device.send_data(remote_device,END_DATA)
 
-END_DATA = "$ed@"
-my_device.send_data(remote_device,END_DATA)
-
-my_device.close()
-print("\r\nsent\r\n")
+    count += 1
+    if (count == 100):
+        my_device.close()
+        break
+    print("\r\nsent:",count)
+    time.sleep(0.1)
 
 
 '''

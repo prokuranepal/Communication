@@ -2,6 +2,14 @@ from __future__ import print_function
 from dronekit import connect, VehicleMode
 import time
 
+from digi.xbee.devices import XBeeDevice
+from digi.xbee.devices import RemoteXBeeDevice
+from digi.xbee.models.address import XBee64BitAddress
+
+PORT = '/dev/ttyUSB0'
+BAUD_RATE = 9600
+DRONE_ID = "0013A200419B5208"
+
 #Set up option parsing to get connection string
 import argparse  
 parser = argparse.ArgumentParser(description='Print out vehicle state information. Connects to SITL on local PC by default.')
@@ -51,4 +59,43 @@ data['heading'] = _heading
 data['groundspeed'] = _groundspeed
 data['airspeed'] = _airspeed
 
-print(data)
+data = str(data)
+data = "si"+data+"ei"
+
+
+my_device = XBeeDevice(PORT, BAUD_RATE)
+my_device.open()
+remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(DRONE_ID))
+print("\r\n now sending \r\n")
+n = 70 # chunk length
+chunks = []
+
+for i in range(0, len(data)+4, n):
+    chunks.append(data[i:i+n] )
+
+chunks_count = len(chunks)
+
+# add s{num_chunks_count} at the beginning and e{num_chunks_count} at the end of the string to denote start and end of data. 
+chunks[0] = 's'+str(chunks_count)+chunks[0][2:]
+chunks[chunks_count-1] = chunks[chunks_count-1][0:-1]+str(chunks_count)
+
+
+
+for i in range(chunks_count):
+    DATA_TO_SEND = chunks[i]
+    my_device.send_data(remote_device , DATA_TO_SEND)
+
+my_device.close()
+print("\r\nsent\r\n")
+
+
+'''
+retrived = ''
+
+for i in range(len(chunks)):
+    retrived += chunks[i]
+
+print("retriving")
+print(retrived)
+print(len(retrived))
+'''

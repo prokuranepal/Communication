@@ -11,9 +11,33 @@ from digi.xbee.models.address import XBee64BitAddress
 #Import regarding scheduler tasks
 from apscheduler.schedulers.background import BackgroundScheduler
 
+#Import regarding logging
+import logging
+
+#define for logging
+#Create and configure logger 
+logging.basicConfig(filename="drone.log", 
+                    format='%(asctime)s : %(levelname)s :: %(message)s', 
+                    filemode='w') 
+
+#Creating an object 
+logger=logging.getLogger() 
+  
+#Setting the threshold of logger to WARNING. i.e only warning, error, and critical message is shown in log. 
+'''
+ Thresholds:
+ DEBUG
+ INFO
+ WARNING
+ ERROR
+ CRITICAL 
+'''
+logger.setLevel(logging.WARNING) 
+
 # define background scheduler
 sched = BackgroundScheduler()
 
+#configure for XBee
 PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 DRONE_ID = "0013A200419B5208"
@@ -40,19 +64,84 @@ print("\nConnecting to vehicle on: %s" % connection_string)
 vehicle = connect(connection_string, wait_ready=True)
 
 def read_and_send_data():
-    _location = vehicle.location.global_relative_frame
-    _attitude = vehicle.attitude
-    _velocity = vehicle.velocity
-    _heading = vehicle.heading
-    _groundspeed = vehicle.groundspeed
-    _airspeed = vehicle.airspeed
-    _mode = vehicle.mode.name
-    _is_arm = vehicle.armed
-    _ekf_ok = vehicle.ekf_ok
-    _status = vehicle.system_status.state
-    _gps = vehicle.gps_0
-    _battery = vehicle.battery
-    _lidar = vehicle.rangefinder.distance
+    try:
+        _location = vehicle.location.global_relative_frame
+    except Exception as e:
+        error = {'context':'location','msg':'location not found!!'}
+        logger.error(error)
+
+    try:
+        _attitude = vehicle.attitude
+    except Exception as e:
+        error = {'context':'attitude','msg':'attitude not found!!'}
+        logger.error(error)
+    
+    try:
+        _velocity = vehicle.velocity
+    except Exception as e:
+        error = {'context':'velocity','msg':'velocity not found!!'}
+        logger.error(error)
+    
+    try:
+        _heading = vehicle.heading
+    except Exception as e:
+        error = {'context':'heading','msg':'heading not found!!'}
+        logger.error(error)
+        
+    try:
+        _groundspeed = vehicle.groundspeed
+    except Exception as e:
+        error = {'context':'groundspeed','msg':'groundspeed not found!!'}
+        logger.error(error)
+
+    try:    
+        _airspeed = vehicle.airspeed
+    except Exception as e:
+        error = {'context':'airspeed','msg':'airspeed not found!!'}
+        logger.error(error)
+        
+    try:
+        _mode = vehicle.mode.name
+    except Exception as e:
+        error = {'context':'mode','msg':'flight mode not found!!'}
+        logger.error(error)
+        
+    try:
+        _is_arm = vehicle.armed
+    except Exception as e:
+        error = {'context':'arm','msg':'arm status not found!!'}
+        logger.error(error)
+    
+    try:
+        _ekf_ok = vehicle.ekf_ok
+    except Exception as e:
+        error = {'context':'ekf','msg':'ekf status not found!!'}
+        logger.error(error)
+    
+    try:
+        _status = vehicle.system_status.state
+    except Exception as e:
+        error = {'context':'status','msg':'vehicle status not found!!'}
+        logger.error(error)
+        
+    try:
+        _gps = vehicle.gps_0
+    except Exception as e:
+        error = {'context':'gps','msg':'gps status not found!!'}
+        logger.error(error)
+
+    try:    
+        _battery = vehicle.battery
+    except Exception as e:
+        error = {'context':'battery','msg':'battery status not found!!'}
+        logger.error(error)
+
+    try:    
+        _lidar = vehicle.rangefinder.distance
+    except Exception as e:
+        error = {'context':'lidar','msg':'lidar data not found!!'}
+        logger.error(error)
+        
 
     print("Alt:",_location.alt)
     print("Sat:",_gps.satellites_visible)

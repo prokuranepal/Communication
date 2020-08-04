@@ -14,6 +14,9 @@ from apscheduler.schedulers.background import BackgroundScheduler
 #Import regarding logging
 import logging
 
+#Import for threading
+import threading
+
 #define for logging
 #Create and configure logger 
 logging.basicConfig(filename="drone.log", 
@@ -42,6 +45,8 @@ PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 DRONE_ID = "0013A200419B5208"
 
+data = {}
+
 #Set up option parsing to get connection string
 import argparse  
 parser = argparse.ArgumentParser(description='Print out vehicle state information. Connects to SITL on local PC by default.')
@@ -63,9 +68,10 @@ if not connection_string:
 print("\nConnecting to vehicle on: %s" % connection_string)
 vehicle = connect(connection_string, wait_ready=True)
 
-def read_and_send_data():
+def read_data():
     try:
-        _location = vehicle.location.global_relative_frame
+        _location_global_relative = vehicle.location.global_relative_frame
+        _location_global = vehicle.location.global_frame
     except Exception as e:
         error = {'context':'location','msg':'location not found!!'}
         logger.error(error)
@@ -142,85 +148,60 @@ def read_and_send_data():
         error = {'context':'lidar','msg':'lidar data not found!!'}
         logger.error(error)
         
-
-    print("Alt:",_location.alt)
-    print("Sat:",_gps.satellites_visible)
-    print("Hdop:",_gps.eph)
-    print("fix:",_gps.fix_type)
-    print("Head:",_heading)
-    print("GS:",_groundspeed)
-    print("AS",_airspeed)
-    print("mode:",_mode)
-    print("Arm:",_is_arm)
-    print("EKF:",_ekf_ok)
-    print("Status:",_status)
-    print("lidar:",_lidar)
-    print("Volt:",_battery.voltage)
-    print("\r\n ")
-
-
-sched.add_job(read_and_send_data, 'interval', seconds=1)
-sched.start()
-input()
-sched.shutdown()
-
-
-
-
-'''
-data = {}
-
-data['location'] = {}
-data['location']['lat'] = _location.lat
-data['location']['lon'] = _location.lon
-data['location']['altR'] = _location.alt
-
-data['attitude'] = {}
-data['attitude']['roll'] = _attitude.roll
-data['attitude']['pitch'] = _attitude.pitch
-data['attitude']['yaw'] = _attitude.yaw
-
-data['velocity'] = {}
-data['velocity']['vx'] = _velocity[0]
-data['velocity']['vy'] = _velocity[1]
-data['velocity']['vz'] = _velocity[2]
-
-data['heading'] = _heading
-data['groundspeed'] = _groundspeed
-data['airspeed'] = _airspeed
-
-data = str(data)
-
+    data['lat'] = _location_global_relative.lat
+    data['lng'] = _location_global_relative.lon
+    data['altr'] = _location_global_relative.alt
+    data['alt'] = _location_global.alt
+    data['roll'] = _attitude.roll
+    data['pitch'] = _attitude.pitch
+    data['yaw'] = _attitude.yaw
+    data['numSat'] = _gps.satellites_visible
+    data['hdop'] = _gps.eph
+    data['fix'] = _gps.fix_type
+    data['head'] = _heading
+    data['gs'] = _groundspeed
+    data['as'] = _airspeed
+    data['mode'] = _mode
+    data['arm'] = _is_arm
+    data['ekf'] = _ekf_ok
+    data['status'] = _status
+    data['lidar'] = _lidar
+    data['volt'] = _battery.voltage
+    data['conn'] = 'True'
+    
+    #create a thread instance as t and send data
+    #t = threading.Thread(target = send_data, args = (data,))
+    #t.start()
+    
+    
+def send_data():
+    global data
+    _data = str(data)
+    n = 70 # chunk length
+    try:
+        START_DATA = "$st@"
+        my_device.send_data(remote_device , START_DATA)
+        #create a chunk of data and send
+        for i in range(0, len(_data), n):
+            DATA_TO_SEND = _data[i:i+n]
+            my_device.send_data(remote_device , DATA_TO_SEND)
+        END_DATA = "$ed@"
+        my_device.send_data(remote_device,END_DATA)
+    except Exception as e:
+            error = {'context':'XBee','msg':'Drone data not sent!!'}
+            logging.critical(error)
+    
 
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
 remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(DRONE_ID))
-print("\r\n now sending \r\n")
-n = 70 # chunk length
-chunks = []
 
-for i in range(0, len(data), n):
-    chunks.append(data[i:i+n] )
+sched.add_job(read_data, 'interval', seconds=0.2)
+sched.add_job(send_data,'interval',seconds = 0.2)
+sched.start()
 
 
-count = 0
-while True:
-    START_DATA = "$st@"
-    my_device.send_data(remote_device , START_DATA)
-
-    for i in range(len(chunks)):
-        DATA_TO_SEND = chunks[i]
-        my_device.send_data(remote_device , DATA_TO_SEND)
-
-    END_DATA = "$ed@"
-    my_device.send_data(remote_device,END_DATA)
-
-    count += 1
-    if (count == 100):
-        my_device.close()
-        break
-    print("\r\nsent:",count)
-    time.sleep(0.1)
-
-'''
+input()
+sched.shutdown()
+my_device.close()

@@ -65,7 +65,8 @@ vehicle = connect(connection_string, wait_ready=True)
 
 def read_and_send_data():
     try:
-        _location = vehicle.location.global_relative_frame
+        _location_global_relative = vehicle.location.global_relative_frame
+        _location_global = vehicle.location.global_frame
     except Exception as e:
         error = {'context':'location','msg':'location not found!!'}
         logger.error(error)
@@ -157,70 +158,67 @@ def read_and_send_data():
     print("lidar:",_lidar)
     print("Volt:",_battery.voltage)
     print("\r\n ")
+    
+    data = {}
 
+    data['lat'] = _location_global_relative.lat
+    data['lng'] = _location_global_relative.lon
+    data['altr'] = _location_global_relative.alt
+    data['alt'] = _location_global.alt
+    data['roll'] = _attitude.roll
+    data['pitch'] = _attitude.pitch
+    data['yaw'] = _attitude.yaw
+    data['numSat'] = _gps.satellites_visible
+    data['hdop'] = _gps.eph
+    data['fix'] = _gps.fix_type
+    data['head'] = _heading
+    data['gs'] = _groundspeed
+    data['as'] = _airspeed
+    data['mode'] = _mode
+    data['arm'] = _is_arm
+    data['ekf'] = _ekf_ok
+    data['status'] = _status
+    data['lidar'] = _lidar
+    data['volt'] = _battery.voltage
 
-sched.add_job(read_and_send_data, 'interval', seconds=1)
-sched.start()
-input()
-sched.shutdown()
+    data = str(data)
+    n = 70 # chunk length
+    chunks = []
 
+    for i in range(0, len(data), n):
+        chunks.append(data[i:i+n] )
 
+    START_DATA = "$st@"
+    try:
+        my_device.send_data(remote_device , START_DATA)
+    except Exception as e:
+        error = {'context':'XBee','msg':'Start string not sent!!'}
+        logging.error(error)
 
+    for i in range(len(chunks)):
+        DATA_TO_SEND = chunks[i]
+        try:
+            my_device.send_data(remote_device , DATA_TO_SEND)
+        except Exception as e:
+            error = {'context':'XBee','msg':'Drone status not sent!!'}
+            logging.error(error)
 
-'''
-data = {}
-
-data['location'] = {}
-data['location']['lat'] = _location.lat
-data['location']['lon'] = _location.lon
-data['location']['altR'] = _location.alt
-
-data['attitude'] = {}
-data['attitude']['roll'] = _attitude.roll
-data['attitude']['pitch'] = _attitude.pitch
-data['attitude']['yaw'] = _attitude.yaw
-
-data['velocity'] = {}
-data['velocity']['vx'] = _velocity[0]
-data['velocity']['vy'] = _velocity[1]
-data['velocity']['vz'] = _velocity[2]
-
-data['heading'] = _heading
-data['groundspeed'] = _groundspeed
-data['airspeed'] = _airspeed
-
-data = str(data)
-
+    END_DATA = "$ed@"
+    try:
+        my_device.send_data(remote_device,END_DATA)
+    except Exception as e:
+            error = {'context':'XBee','msg':'End string not sent!!'}
+            logging.error(error)
 
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
 remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(DRONE_ID))
-print("\r\n now sending \r\n")
-n = 70 # chunk length
-chunks = []
 
-for i in range(0, len(data), n):
-    chunks.append(data[i:i+n] )
+sched.add_job(read_and_send_data, 'interval', seconds=1)
+sched.start()
 
 
-count = 0
-while True:
-    START_DATA = "$st@"
-    my_device.send_data(remote_device , START_DATA)
-
-    for i in range(len(chunks)):
-        DATA_TO_SEND = chunks[i]
-        my_device.send_data(remote_device , DATA_TO_SEND)
-
-    END_DATA = "$ed@"
-    my_device.send_data(remote_device,END_DATA)
-
-    count += 1
-    if (count == 100):
-        my_device.close()
-        break
-    print("\r\nsent:",count)
-    time.sleep(0.1)
-
-'''
+input()
+sched.shutdown()
+my_device.close()

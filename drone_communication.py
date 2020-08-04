@@ -14,6 +14,9 @@ from apscheduler.schedulers.background import BackgroundScheduler
 #Import regarding logging
 import logging
 
+#Import for threading
+import threading
+
 #define for logging
 #Create and configure logger 
 logging.basicConfig(filename="drone.log", 
@@ -143,22 +146,6 @@ def read_and_send_data():
         error = {'context':'lidar','msg':'lidar data not found!!'}
         logger.error(error)
         
-
-    print("Alt:",_location.alt)
-    print("Sat:",_gps.satellites_visible)
-    print("Hdop:",_gps.eph)
-    print("fix:",_gps.fix_type)
-    print("Head:",_heading)
-    print("GS:",_groundspeed)
-    print("AS",_airspeed)
-    print("mode:",_mode)
-    print("Arm:",_is_arm)
-    print("EKF:",_ekf_ok)
-    print("Status:",_status)
-    print("lidar:",_lidar)
-    print("Volt:",_battery.voltage)
-    print("\r\n ")
-    
     data = {}
 
     data['lat'] = _location_global_relative.lat
@@ -181,41 +168,38 @@ def read_and_send_data():
     data['lidar'] = _lidar
     data['volt'] = _battery.voltage
 
+    
+    #create a thread instance as t and send data
+    t = threading.Thread(target = send_data, args = (data,))
+    t.start()
+    
+    
+def send_data(data):
+    
     data = str(data)
     n = 70 # chunk length
-    chunks = []
 
-    for i in range(0, len(data), n):
-        chunks.append(data[i:i+n] )
-
-    START_DATA = "$st@"
     try:
+        START_DATA = "$st@"
         my_device.send_data(remote_device , START_DATA)
-    except Exception as e:
-        error = {'context':'XBee','msg':'Start string not sent!!'}
-        logging.error(error)
 
-    for i in range(len(chunks)):
-        DATA_TO_SEND = chunks[i]
-        try:
+        #create a chunk of data and send
+        for i in range(0, len(data), n):
+            DATA_TO_SEND = data[i:i+n]
             my_device.send_data(remote_device , DATA_TO_SEND)
-        except Exception as e:
-            error = {'context':'XBee','msg':'Drone status not sent!!'}
-            logging.error(error)
-
-    END_DATA = "$ed@"
-    try:
+        END_DATA = "$ed@"
         my_device.send_data(remote_device,END_DATA)
     except Exception as e:
-            error = {'context':'XBee','msg':'End string not sent!!'}
-            logging.error(error)
+            error = {'context':'XBee','msg':'Drone data not sent!!'}
+            logging.critical(error)
+    
 
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
 remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(DRONE_ID))
 
-sched.add_job(read_and_send_data, 'interval', seconds=1)
+sched.add_job(read_and_send_data, 'interval', seconds=0.5)
 sched.start()
 
 

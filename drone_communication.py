@@ -45,6 +45,8 @@ PORT = '/dev/ttyUSB0'
 BAUD_RATE = 9600
 DRONE_ID = "0013A200419B5208"
 
+data = {}
+
 #Set up option parsing to get connection string
 import argparse  
 parser = argparse.ArgumentParser(description='Print out vehicle state information. Connects to SITL on local PC by default.')
@@ -66,7 +68,7 @@ if not connection_string:
 print("\nConnecting to vehicle on: %s" % connection_string)
 vehicle = connect(connection_string, wait_ready=True)
 
-def read_and_send_data():
+def read_data():
     try:
         _location_global_relative = vehicle.location.global_relative_frame
         _location_global = vehicle.location.global_frame
@@ -146,8 +148,6 @@ def read_and_send_data():
         error = {'context':'lidar','msg':'lidar data not found!!'}
         logger.error(error)
         
-    data = {}
-
     data['lat'] = _location_global_relative.lat
     data['lng'] = _location_global_relative.lon
     data['altr'] = _location_global_relative.alt
@@ -167,25 +167,23 @@ def read_and_send_data():
     data['status'] = _status
     data['lidar'] = _lidar
     data['volt'] = _battery.voltage
-
+    data['conn'] = 'True'
     
     #create a thread instance as t and send data
-    t = threading.Thread(target = send_data, args = (data,))
-    t.start()
+    #t = threading.Thread(target = send_data, args = (data,))
+    #t.start()
     
     
-def send_data(data):
-    
-    data = str(data)
+def send_data():
+    global data
+    _data = str(data)
     n = 70 # chunk length
-
     try:
         START_DATA = "$st@"
         my_device.send_data(remote_device , START_DATA)
-
         #create a chunk of data and send
-        for i in range(0, len(data), n):
-            DATA_TO_SEND = data[i:i+n]
+        for i in range(0, len(_data), n):
+            DATA_TO_SEND = _data[i:i+n]
             my_device.send_data(remote_device , DATA_TO_SEND)
         END_DATA = "$ed@"
         my_device.send_data(remote_device,END_DATA)
@@ -199,7 +197,8 @@ my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
 remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(DRONE_ID))
 
-sched.add_job(read_and_send_data, 'interval', seconds=0.5)
+sched.add_job(read_data, 'interval', seconds=0.2)
+sched.add_job(send_data,'interval',seconds = 0.2)
 sched.start()
 
 

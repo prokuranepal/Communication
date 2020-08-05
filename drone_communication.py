@@ -42,9 +42,9 @@ sched = BackgroundScheduler()
 
 #configure for XBee
 PORT = '/dev/ttyUSB0'
-BAUD_RATE = 9600
-DRONE_ID = "0013A200419B5208"
-
+BAUD_RATE = 57600
+REMOTE_DRONE_ID = "0013A200419B5208"
+DRONE_ID = '#d1'
 data = {}
 
 #Set up option parsing to get connection string
@@ -147,7 +147,8 @@ def read_data():
     except Exception as e:
         error = {'context':'lidar','msg':'lidar data not found!!'}
         logger.error(error)
-        
+    
+    data['ID'] = DRONE_ID
     data['lat'] = _location_global_relative.lat
     data['lng'] = _location_global_relative.lon
     data['altr'] = _location_global_relative.alt
@@ -173,7 +174,11 @@ def read_data():
     #t = threading.Thread(target = send_data, args = (data,))
     #t.start()
     
-    
+
+my_device = XBeeDevice(PORT, BAUD_RATE)
+my_device.open()
+remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
+
 def send_data():
     global data
     _data = str(data)
@@ -185,6 +190,7 @@ def send_data():
         for i in range(0, len(_data), n):
             DATA_TO_SEND = _data[i:i+n]
             my_device.send_data(remote_device , DATA_TO_SEND)
+            time.sleep(0.2)
         END_DATA = "$ed@"
         my_device.send_data(remote_device,END_DATA)
     except Exception as e:
@@ -193,12 +199,9 @@ def send_data():
     
 
 
-my_device = XBeeDevice(PORT, BAUD_RATE)
-my_device.open()
-remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(DRONE_ID))
 
-sched.add_job(read_data, 'interval', seconds=0.2)
-sched.add_job(send_data,'interval',seconds = 0.2)
+sched.add_job(read_data, 'interval', seconds=0.5)
+sched.add_job(send_data,'interval',seconds = 2)
 sched.start()
 
 

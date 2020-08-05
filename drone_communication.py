@@ -190,7 +190,6 @@ def send_data():
         for i in range(0, len(_data), n):
             DATA_TO_SEND = _data[i:i+n]
             my_device.send_data(remote_device , DATA_TO_SEND)
-            time.sleep(0.2)
         END_DATA = "$ed@"
         my_device.send_data(remote_device,END_DATA)
     except Exception as e:
@@ -201,7 +200,7 @@ def send_data():
 
 
 sched.add_job(read_data, 'interval', seconds=0.5)
-sched.add_job(send_data,'interval',seconds = 2)
+sched.add_job(send_data,'interval',seconds = 1)
 sched.start()
 
 

@@ -1,6 +1,6 @@
 from digi.xbee.devices import XBeeDevice
 PORT = '/dev/ttyUSB0'
-BAUD_RATE = 9600
+BAUD_RATE = 57600
 
 device = XBeeDevice(PORT, BAUD_RATE)
 device.open()
@@ -15,3 +15,4 @@ hardware_version = device.get_hardware_version()
 firmware_version = device.get_firmware_version()
 
 print("MAC ADDRESS = ",addr_64)
+print("Node ID = ",node_id)

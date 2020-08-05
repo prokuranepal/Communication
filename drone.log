@@ -1,8 +1,18 @@
-2020-08-05 11:47:40,081 : WARNING :: Link timeout, no heartbeat in last 5 seconds
-2020-08-05 11:48:05,053 : ERROR :: Exception in MAVLink input loop
-Traceback (most recent call last):
-  File "/home/abhish/anaconda3/envs/xbee/lib/python3.6/site-packages/dronekit/mavlink.py", line 211, in mavlink_thread_in
-    fn(self)
-  File "/home/abhish/anaconda3/envs/xbee/lib/python3.6/site-packages/dronekit/__init__.py", line 1371, in listener
-    self._heartbeat_error)
-dronekit.APIException: No heartbeat in 30 seconds, aborting.
+2020-08-05 13:27:40,510 : CRITICAL :: APM:Copter V3.3 (d6053245)
+2020-08-05 13:27:40,511 : CRITICAL :: Frame: QUAD
+2020-08-05 13:27:40,932 : CRITICAL :: Calibrating barometer
+2020-08-05 13:27:43,136 : CRITICAL :: Initialising APM...
+2020-08-05 13:27:45,417 : CRITICAL :: barometer calibration complete
+2020-08-05 13:27:45,418 : CRITICAL :: GROUND START
+2020-08-05 13:40:50,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:50 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:51,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:51 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:52,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:52 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:53,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:53 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:53,320 : CRITICAL :: {'context': 'XBee', 'msg': 'Drone data not sent!!'}
+2020-08-05 13:40:55,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:55 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:56,317 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:56 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:57,317 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:57 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:58,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:40:58 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:40:58,319 : CRITICAL :: {'context': 'XBee', 'msg': 'Drone data not sent!!'}
+2020-08-05 13:41:00,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:41:00 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-05 13:41:01,318 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 13:41:01 +0545)" skipped: maximum number of running instances reached (1)

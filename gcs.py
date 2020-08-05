@@ -16,15 +16,19 @@ data_queue2 = ''
 
 
 count = 0
-socket1 = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
-socket = socket1.define(BaseNamespace,'/JT601')
-while not socket._connected:
-    socket1 = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
-    socket = socket1.define(BaseNamespace,'/JT601')
-socket.emit("joinPi")
+socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+# while not socket._connected:
+#     socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
 
-def socket_function(parsed_data):
+socket_a = socket.define(BaseNamespace,'/JT601')
+socket_a.emit("joinPi")
+
+socket_b = socket.define(BaseNamespace,'/JT602')
+socket_b.emit("joinPi")
+
+def socket_function(parsed_data,drone):
     global count
+    
     try:
         ini_string = json.dumps(parsed_data)
         processed_data = json.loads(ini_string)
@@ -32,14 +36,14 @@ def socket_function(parsed_data):
         #print(final_dictionary,"\n")
         print(count,"\n")
         count+=1
-        socket.emit('data',final_dictionary)
+        drone.emit('data',final_dictionary)
     except Exception as e:
         print("error")
-    socket1.wait(seconds=0.2)
+    socket.wait(seconds=0.2)
 
 
 
-def string_man(data_queue):
+def string_man(data_queue,drone):
                 global count
                 #index_end = data_queue.index('$ed@')
                 #index_start = data_queue.index('$st@')
@@ -54,8 +58,8 @@ def string_man(data_queue):
                 
                 #print( parsed_data,"\n")
                 
-                #b = threading.Thread(target = socket_function,args = (parsed_data,))
-                #b.start()git
+                b = threading.Thread(target = socket_function,args = (parsed_data,drone))
+                b.start()
                 
              
 def main():
@@ -77,14 +81,14 @@ def main():
 
                 data_queue1 += message
                 if(message == '$ed@'):
-                    b = threading.Thread(target = string_man,args = (data_queue1,))
+                    b = threading.Thread(target = string_man,args = (data_queue1,socket_a))
                     b.start()
                     # thread.start_new_thread(send_data,("Send Data", 1))
                     data_queue1 = ''
             elif address == ADDRESS2:
                 data_queue2 += message
                 if(message == '$ed@'):
-                    a = threading.Thread(target = string_man,args = (data_queue2,))
+                    a = threading.Thread(target = string_man,args = (data_queue2,socket_b))
                     a.start()
                     # thread.start_new_thread(send_data,("Send Data", 1))
                     data_queue2 = ''

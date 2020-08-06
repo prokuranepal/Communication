@@ -1,6 +1,6 @@
 #Import regarding dronekit
 from __future__ import print_function
-from dronekit import connect, VehicleMode
+from dronekit import connect, VehicleMode, LocationGlobal, LocationGlobalRelative
 import time
 
 #Import regarding XBee
@@ -47,6 +47,11 @@ REMOTE_DRONE_ID = "0013A200419B5208"
 DRONE_ID = '#d1'
 data = {}
 
+my_device = XBeeDevice(PORT, BAUD_RATE)
+my_device.open()
+remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
+
+
 #Set up option parsing to get connection string
 import argparse  
 parser = argparse.ArgumentParser(description='Print out vehicle state information. Connects to SITL on local PC by default.')
@@ -68,85 +73,112 @@ if not connection_string:
 print("\nConnecting to vehicle on: %s" % connection_string)
 vehicle = connect(connection_string, wait_ready=True)
 
+def set_mode_RTL():
+    global vehicle
+    fix_type=0
+    try:
+        fix_type=vehicle.gps_0.fix_type
+    except Exception as e:
+        pass
+    if fix_type >1:
+        vehicle.mode = VehicleMode("RTL")
+        print ("Vehicle mode set to RTL")
+        warn = {'context':'INFO','msg':'Vehicle mode set to RTL'}
+        logger.warning(warn)
+    
+def set_mode_LAND():
+    global vehicle
+    fix_type=0
+    try:
+        fix_type=vehicle.gps_0.fix_type
+    except Exception as e:
+        pass
+    if fix_type >1:
+        vehicle.mode=VehicleMode("LAND")
+        print("Vehicle mode set to LAND")
+        warn = {'context':'INFO','msg':'Vehicle mode set to LAND'}
+        logger.warning(warn)
+        
+
 def read_data():
     try:
         _location_global_relative = vehicle.location.global_relative_frame
         _location_global = vehicle.location.global_frame
     except Exception as e:
-        error = {'context':'location','msg':'location not found!!'}
-        logger.error(error)
+        err = {'context':'location','msg':'location not found!!'}
+        logger.error(err)
 
     try:
         _attitude = vehicle.attitude
     except Exception as e:
-        error = {'context':'attitude','msg':'attitude not found!!'}
-        logger.error(error)
+        err = {'context':'attitude','msg':'attitude not found!!'}
+        logger.error(err)
     
     try:
         _velocity = vehicle.velocity
     except Exception as e:
-        error = {'context':'velocity','msg':'velocity not found!!'}
-        logger.error(error)
+        err = {'context':'velocity','msg':'velocity not found!!'}
+        logger.error(err)
     
     try:
         _heading = vehicle.heading
     except Exception as e:
-        error = {'context':'heading','msg':'heading not found!!'}
-        logger.error(error)
+        err = {'context':'heading','msg':'heading not found!!'}
+        logger.error(err)
         
     try:
         _groundspeed = vehicle.groundspeed
     except Exception as e:
-        error = {'context':'groundspeed','msg':'groundspeed not found!!'}
-        logger.error(error)
+        err = {'context':'groundspeed','msg':'groundspeed not found!!'}
+        logger.error(err)
 
     try:    
         _airspeed = vehicle.airspeed
     except Exception as e:
-        error = {'context':'airspeed','msg':'airspeed not found!!'}
-        logger.error(error)
+        err = {'context':'airspeed','msg':'airspeed not found!!'}
+        logger.error(err)
         
     try:
         _mode = vehicle.mode.name
     except Exception as e:
-        error = {'context':'mode','msg':'flight mode not found!!'}
-        logger.error(error)
+        err = {'context':'mode','msg':'flight mode not found!!'}
+        logger.error(err)
         
     try:
         _is_arm = vehicle.armed
     except Exception as e:
-        error = {'context':'arm','msg':'arm status not found!!'}
-        logger.error(error)
+        err = {'context':'arm','msg':'arm status not found!!'}
+        logger.error(err)
     
     try:
         _ekf_ok = vehicle.ekf_ok
     except Exception as e:
-        error = {'context':'ekf','msg':'ekf status not found!!'}
-        logger.error(error)
+        err = {'context':'ekf','msg':'ekf status not found!!'}
+        logger.error(err)
     
     try:
         _status = vehicle.system_status.state
     except Exception as e:
-        error = {'context':'status','msg':'vehicle status not found!!'}
-        logger.error(error)
+        err = {'context':'status','msg':'vehicle status not found!!'}
+        logger.error(err)
         
     try:
         _gps = vehicle.gps_0
     except Exception as e:
-        error = {'context':'gps','msg':'gps status not found!!'}
-        logger.error(error)
+        err = {'context':'gps','msg':'gps status not found!!'}
+        logger.error(err)
 
     try:    
         _battery = vehicle.battery
     except Exception as e:
-        error = {'context':'battery','msg':'battery status not found!!'}
-        logger.error(error)
+        err = {'context':'battery','msg':'battery status not found!!'}
+        logger.error(err)
 
     try:    
         _lidar = vehicle.rangefinder.distance
     except Exception as e:
-        error = {'context':'lidar','msg':'lidar data not found!!'}
-        logger.error(error)
+        err = {'context':'lidar','msg':'lidar data not found!!'}
+        logger.error(err)
     
     data['ID'] = DRONE_ID
     data['lat'] = _location_global_relative.lat
@@ -174,11 +206,6 @@ def read_data():
     #t = threading.Thread(target = send_data, args = (data,))
     #t.start()
     
-
-my_device = XBeeDevice(PORT, BAUD_RATE)
-my_device.open()
-remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
-
 def send_data():
     global data
     _data = str(data)
@@ -193,17 +220,35 @@ def send_data():
         END_DATA = "$ed@"
         my_device.send_data(remote_device,END_DATA)
     except Exception as e:
-            error = {'context':'XBee','msg':'Drone data not sent!!'}
-            logging.critical(error)
+            err = {'context':'XBee','msg':'Drone data not sent!!'}
+            logging.critical(err)
     
 
 
+def main():
+    #run read_data() every 0.5 seconds
+    sched.add_job(read_data, 'interval', seconds=0.5)
+    #run send_data() every 1 seconds
+    sched.add_job(send_data,'interval',seconds = 1)
+    sched.start()
 
-sched.add_job(read_data, 'interval', seconds=0.5)
-sched.add_job(send_data,'interval',seconds = 1)
-sched.start()
+    def data_receive_callback(xbee_message):
+        message = xbee_message.data.decode()
+        if(message == 'LAND'):
+            l = threading.Thread(target = set_mode_LAND)
+            l.start()
+        elif(message == 'RTL'):
+            r = threading.Thread(target = set_mode_RTL)
+            r.start()
+
+    #add a callback for receive data
+    my_device.add_data_received_callback(data_receive_callback)
+
+    input()
+    sched.shutdown()
+    my_device.close()
+
+if __name__ == '__main__':
+    main()
 
 
-input()
-sched.shutdown()
-my_device.close()

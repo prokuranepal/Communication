@@ -1,37 +1,11 @@
-2020-08-05 14:53:49,687 : CRITICAL :: APM:Copter V3.3 (d6053245)
-2020-08-05 14:53:49,689 : CRITICAL :: Frame: QUAD
-2020-08-05 14:53:50,108 : CRITICAL :: Calibrating barometer
-2020-08-05 14:53:52,344 : CRITICAL :: Initialising APM...
-2020-08-05 14:53:54,648 : CRITICAL :: barometer calibration complete
-2020-08-05 14:53:54,649 : CRITICAL :: GROUND START
-2020-08-05 14:55:56,187 : ERROR :: ARMING MOTORS
-2020-08-05 14:55:56,189 : CRITICAL :: GROUND START
-2020-08-05 14:55:57,428 : CRITICAL :: Initialising APM...
-2020-08-05 14:55:57,628 : ERROR :: ARMING MOTORS
-2020-08-05 14:56:34,066 : CRITICAL :: Reached Command #2
-2020-08-05 14:56:56,236 : CRITICAL :: Reached Command #3
-2020-08-05 14:59:23,882 : CRITICAL :: Reached Command #5
-2020-08-05 14:59:39,914 : CRITICAL :: Reached Command #6
-2020-08-05 14:59:55,548 : CRITICAL :: Reached Command #7
-2020-08-05 15:00:14,681 : CRITICAL :: Reached Command #8
-2020-08-05 15:01:36,043 : ERROR :: DISARMING MOTORS
-2020-08-05 15:01:42,718 : ERROR :: Arm: Waiting for Nav Checks
-2020-08-05 15:01:46,008 : ERROR :: Arm: Waiting for Nav Checks
-2020-08-05 15:01:49,315 : ERROR :: Arm: Waiting for Nav Checks
-2020-08-05 15:02:26,897 : ERROR :: ARMING MOTORS
-2020-08-05 15:02:26,901 : CRITICAL :: Initialising APM...
-2020-08-05 15:03:02,798 : CRITICAL :: Reached Command #2
-2020-08-05 15:03:24,799 : CRITICAL :: Reached Command #3
-2020-08-05 15:04:59,134 : ERROR :: DISARMING MOTORS
-2020-08-05 15:06:06,145 : ERROR :: ARMING MOTORS
-2020-08-05 15:06:06,149 : CRITICAL :: Initialising APM...
-2020-08-05 15:06:41,312 : CRITICAL :: Reached Command #2
-2020-08-05 15:07:03,234 : CRITICAL :: Reached Command #3
-2020-08-05 15:09:30,434 : CRITICAL :: Reached Command #5
-2020-08-05 15:09:46,542 : CRITICAL :: Reached Command #6
-2020-08-05 15:10:02,290 : CRITICAL :: Reached Command #7
-2020-08-05 15:10:21,337 : CRITICAL :: Reached Command #8
-2020-08-05 15:12:08,945 : ERROR :: DISARMING MOTORS
-2020-08-05 15:16:18,567 : WARNING :: Execution of job "read_data (trigger: interval[0:00:00.500000], next run at: 2020-08-05 15:16:18 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-05 15:16:18,568 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-05 15:16:18 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-05 15:16:19,068 : WARNING :: Execution of job "read_data (trigger: interval[0:00:00.500000], next run at: 2020-08-05 15:16:19 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-06 16:29:21,858 : WARNING :: {'context': 'INFO', 'msg': 'Vehicle mode set to RTL'}
+2020-08-06 16:29:35,784 : WARNING :: {'context': 'INFO', 'msg': 'Vehicle mode set to LAND'}
+2020-08-06 16:29:46,588 : WARNING :: {'context': 'INFO', 'msg': 'Vehicle mode set to RTL'}
+2020-08-06 16:40:45,129 : WARNING :: Link timeout, no heartbeat in last 5 seconds
+2020-08-06 16:41:10,129 : ERROR :: Exception in MAVLink input loop
+Traceback (most recent call last):
+  File "/home/abhish/anaconda3/envs/xbee/lib/python3.6/site-packages/dronekit/mavlink.py", line 211, in mavlink_thread_in
+    fn(self)
+  File "/home/abhish/anaconda3/envs/xbee/lib/python3.6/site-packages/dronekit/__init__.py", line 1367, in listener
+    self._heartbeat_error)
+dronekit.APIException: No heartbeat in 30 seconds, aborting.

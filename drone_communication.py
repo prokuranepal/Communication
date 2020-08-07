@@ -51,6 +51,8 @@ BAUD_RATE = 57600
 REMOTE_DRONE_ID = "0013A200419B5208"
 DRONE_ID = '#d1'
 data = {}
+waypoint = {}
+_send_mission_once = None
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
@@ -75,8 +77,10 @@ if not connection_string:
     connection_string = sitl.connection_string()
 
 
+
 print("\nConnecting to vehicle on: %s" % connection_string)
 vehicle = connect(connection_string, wait_ready=True)
+print("Connected!!!")
 
 def set_mode_RTL():
     global vehicle
@@ -142,6 +146,7 @@ def start_mission():
     except Exception as e:
         err = {'context':'Prearm','msg':'Pre-arm check failed!!!'}
         logger.error(err)
+
         
 def update_mission(location):
     print("Location set to :",type(location))
@@ -149,8 +154,26 @@ def update_mission(location):
         up.upload_mission(vehicle,location)
         print (location, "loaded")
     except Exception as e:
-        err={'context':'GPS/Mission','msg':'Mission FIle Could not be loaded'}
+        err={'context':'GPS/Mission','msg':'Mission FIle could not be loaded'}
         logger.error(err)
+
+
+def send_mission():
+    #read mission
+    global waypoint
+    global send_mission_once
+    try:
+        print("\nReading mission")
+        waypoint=mi.save_mission(vehicle)
+        send_mission_once = True
+        print("\nMission read")
+        #if waypoint is read, then set send_mission_once to True so that, mission can be sent instead of data.
+    except Exception as e:
+        err = {'context':'Mission','msg':'Mission FIle could not be read'}
+        logger.error(err)
+    
+
+
 
 def read_data():
     try:
@@ -254,13 +277,18 @@ def read_data():
     data['volt'] = _battery.voltage
     data['conn'] = 'True'
     
-    #create a thread instance as t and send data
-    #t = threading.Thread(target = send_data, args = (data,))
-    #t.start()
+    
     
 def send_data():
-    global data
-    _data = str(data)
+    global send_mission_once
+
+    if not send_mission_once:
+        global data
+        _data = str(data)
+    else:
+        global waypoint
+        _data = str(waypoint)
+        send_mission_once = False
     n = 70 # chunk length
     try:
         START_DATA = "$st@"
@@ -278,6 +306,9 @@ def send_data():
 
 
 def main():
+    #First read mission and send mission
+    send_mission()
+
     #run read_data() every 0.5 seconds
     sched.add_job(read_data, 'interval', seconds=0.5)
     #run send_data() every 1 seconds
@@ -299,6 +330,9 @@ def main():
             location = message[5:]
             u = threading.Thread(target = update_mission,args = (location,))
             u.start()
+        elif(message == 'MISS'):
+            m = threading.Thread(target = send_mission)
+            m.start()
 
     #add a callback for receive data
     my_device.add_data_received_callback(data_receive_callback)

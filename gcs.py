@@ -16,8 +16,8 @@ data_queue2 = ''
 jt_address = {'JT601':ADDRESS1,'JT602':ADDRESS2}
 
 count = 0
-#socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
-socket = SocketIO('http://192.168.0.2', 3000, verify=True) #establish socket connection to desired server
+socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+#socket = SocketIO('http://192.168.0.2', 3000, verify=True) #establish socket connection to desired server
 # while not socket._connected:
 #     socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
 
@@ -29,15 +29,17 @@ socket_b.emit("joinPi")
 
 def socket_function(parsed_data,drone):
     global count
-    
+    sending_label = 'data'
     try:
+        if(parsed_data[:3] =='{0:'):
+            sending_label = 'waypoints'
         ini_string = json.dumps(parsed_data)
         processed_data = json.loads(ini_string)
         final_dictionary = eval(processed_data)
         #print(final_dictionary,"\n")
         print(count,"\n")
         count+=1
-        drone.emit('data',final_dictionary)
+        drone.emit(sending_label,final_dictionary)
     except Exception as e:
         print("error")
     socket.wait(seconds=0.2)
@@ -62,19 +64,24 @@ def send_data(address,message):
 def send_data_land(var):
     print(var)
     print("SET TO LAND")
-    send_data(jt_address[var],'LAND')
+    send_data(jt_address['JT601'],'LAND')
 
 def send_data_rtl(var):
     print("Set to rtL")
-    send_data(jt_address[var],'RTL')
+    send_data(jt_address['JT601'],'RTL')
 
 def send_data_initiate(var):
     print("Initiate flight")
-    send_data(jt_address[var],'INIT')
+    send_data(jt_address['JT601'],'INIT')
 
 def send_data_update_mission(var):
     print("Updating Mission")
-    send_data(jt_address[var],'UPDT:'+str(var))
+    send_data(jt_address['JT601'],'UPDT:'+str(var))
+
+def send_data_receive_mission(var):
+    print("Sending Mission")
+    send_data(jt_address['JT601'],'MISS')
+
              
 def main():
     def data_receive_callback(xbee_message):
@@ -103,14 +110,12 @@ def main():
     socket_a.on('RTL',send_data_rtl)
     socket_a.on('initiate_flight',send_data_initiate)
     socket_a.on('positions',send_data_update_mission)
+    socket_a.on('mission_download',send_data_receive_mission)
 
     print("Waiting for data...\n")
     
     input()
     
-
-                
-
 
 if __name__ == '__main__':
     main()

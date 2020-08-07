@@ -1,7 +1,12 @@
 #Import regarding dronekit
 from __future__ import print_function
 from dronekit import connect, VehicleMode, LocationGlobal, LocationGlobalRelative
+import arm_takeoff as arm
 import time
+
+#Import for missions
+import upload_mission as up
+import mission as mi
 
 #Import regarding XBee
 from digi.xbee.devices import XBeeDevice
@@ -98,7 +103,54 @@ def set_mode_LAND():
         print("Vehicle mode set to LAND")
         warn = {'context':'INFO','msg':'Vehicle mode set to LAND'}
         logger.warning(warn)
+
+def start_mission():
+    try:
+        height =vehicle.location.global_relative_frame.alt
+        if vehicle.is_armable and height <= 4: # and not flight_checker: #checking if vehicle is armable and fly command is genuine
+
+            print("FLIGHT INITIATED BY USER")
+            # Copter should arm in GUIDED mode
+            vehicle.mode    = VehicleMode("GUIDED")
+            vehicle.armed   = True
+            # Confirm vehicle armed before attempting to take off
+            while not vehicle.armed:
+                print (" Waiting for arming...")
+                time.sleep(1)
+            arm.arm_and_takeoff(vehicle,4) #arm and takeoff upto 4 meters
+            vehicle.mode = VehicleMode("AUTO") #switch vehicle mode to auto
+           
+            #UNCOMMENT FOR PLANE TAKEOFF
+            # vehicle.mode    = VehicleMode("GUIDED")
+            # vehicle.armed   = True
+            # # Confirm vehicle armed before attempting to take off
+            # while not vehicle.armed:
+            #     print (" Waiting for arming...")
+            #     time.sleep(1)
+            # vehicle.mode = VehicleMode("AUTO") #switch vehicle mode to auto'''
+            # flight_checker=True
+        else:
+            fix_type=0
+            try:
+                fix_type=vehicle.gps_0.fix_type
+            except Exception as e:
+                pass
+            if fix_type > 1:
+                vehicle.mode=VehicleMode("AUTO")
+                print ("Vehicle mode set to AUTO")
+
+    except Exception as e:
+        err = {'context':'Prearm','msg':'Pre-arm check failed!!!'}
+        logger.error(err)
         
+def update_mission(location):
+    print("Location set to :",type(location))
+    try:
+        up.upload_mission(vehicle,location)
+        print (location, "loaded")
+    except Exception as e:
+        err={'context':'GPS/Mission','msg':'Mission FIle Could not be loaded'}
+        logger.error(err)
 
 def read_data():
     try:
@@ -240,6 +292,13 @@ def main():
         elif(message == 'RTL'):
             r = threading.Thread(target = set_mode_RTL)
             r.start()
+        elif(message == 'INIT'):
+            s = threading.Thread(target = start_mission)
+            s.start()
+        elif(message[:4] == 'UPDT'):
+            location = message[5:]
+            u = threading.Thread(target = update_mission,args = (location,))
+            u.start()
 
     #add a callback for receive data
     my_device.add_data_received_callback(data_receive_callback)

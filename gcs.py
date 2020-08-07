@@ -13,10 +13,11 @@ ADDRESS1 = "0013A200419B5AD8"
 data_queue1 = ''
 ADDRESS2 = "0013A20041554FF4"
 data_queue2 = ''
-
+jt_address = {'JT601':ADDRESS1,'JT602':ADDRESS2}
 
 count = 0
-socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+#socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+socket = SocketIO('http://192.168.0.2', 3000, verify=True) #establish socket connection to desired server
 # while not socket._connected:
 #     socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
 
@@ -58,15 +59,22 @@ def send_data(address,message):
     remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(address))
     my_device.send_data(remote_device , message)
 
-def send_data_land_1(var):
+def send_data_land(var):
+    print(var)
     print("SET TO LAND")
-    print(var)
-    send_data(ADDRESS1,'LAND')
+    send_data(jt_address[var],'LAND')
 
-def send_data_rtl_1(var):
-    print(var)
+def send_data_rtl(var):
     print("Set to rtL")
-    send_data(ADDRESS1,'RTL')
+    send_data(jt_address[var],'RTL')
+
+def send_data_initiate(var):
+    print("Initiate flight")
+    send_data(jt_address[var],'INIT')
+
+def send_data_update_mission(var):
+    print("Updating Mission")
+    send_data(jt_address[var],'UPDT:'+str(var))
              
 def main():
     def data_receive_callback(xbee_message):
@@ -91,10 +99,10 @@ def main():
 
     my_device.add_data_received_callback(data_receive_callback)
 
-    socket_a.on('LAND',send_data_land_1)
-    #socket_b.on('LAND',send_data_land)
-    socket_a.on('RTL',send_data_rtl_1)
-    #socket_b.on('RTL',send_data(ADDRESS2,'RTL'))
+    socket_a.on('LAND',send_data_land)
+    socket_a.on('RTL',send_data_rtl)
+    socket_a.on('initiate_flight',send_data_initiate)
+    socket_a.on('positions',send_data_update_mission)
 
     print("Waiting for data...\n")
     

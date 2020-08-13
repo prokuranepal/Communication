@@ -1,0 +1,5 @@
+2020-08-13 12:41:19,110 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-13 12:41:19 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-13 12:42:42,107 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-13 12:42:42 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-13 12:43:49,106 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-08-13 12:43:49 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-13 12:48:58,620 : ERROR :: {'context': 'GPS/Mission', 'msg': 'Mission FIle could not be loaded'}
+2020-08-13 12:49:36,902 : ERROR :: {'context': 'GPS/Mission', 'msg': 'Mission FIle could not be loaded'}

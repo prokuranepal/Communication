@@ -139,9 +139,9 @@ def start_mission():
 
         
 def update_mission(location):
-    print("Location set to :",type(location))
+    print("Location set to :",location)
     try:
-        vehicle.mission_upload(file_name = location)
+        vehicle.mission_upload()#location)
         print (location, "loaded")
     except Exception as e:
         err={'context':'GPS/Mission','msg':'Mission FIle could not be loaded'}

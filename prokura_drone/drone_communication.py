@@ -25,6 +25,9 @@ import logging
 #Import for threading
 import threading
 
+from socketIO_client_nexus import SocketIO, BaseNamespace
+
+
 #define for logging
 #Create and configure logger 
 logging.basicConfig(filename="drone.log", 
@@ -50,95 +53,43 @@ sched = BackgroundScheduler()
 
 #configure for XBee
 PORT = '/dev/ttyUSB0'
-BAUD_RATE = 57600
+BAUD_RATE = 230400
 REMOTE_DRONE_ID = "0013A200419B5208"
 DRONE_ID = '#d1'
 data = {}
 waypoint = {}
 _send_mission_once = None
+sending_label = None
+
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
 remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
 
+## Connect to socket
+socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+socket_a = socket.define(BaseNamespace,'/JT601')
+socket_a.emit("joinPi")
 
 
 #print("\nConnecting to vehicle on: %s" % connection_string)
+print("Connecting to vehicle...")
 vehicle = Drone('tcp:127.0.0.1:5762')
 print("Connected!!!")
 
 def set_mode_RTL():
     vehicle.set_flight_mode('RTL')
-#     global vehicle
-#     fix_type=0
-#     try:
-#         fix_type=vehicle.gps_0.fix_type
-#     except Exception as e:
-#         pass
-#     if fix_type >1:
-#         vehicle.mode = VehicleMode("RTL")
-#         print ("Vehicle mode set to RTL")
-#         warn = {'context':'INFO','msg':'Vehicle mode set to RTL'}
-#         logger.warning(warn)
+
     
 def set_mode_LAND():
     vehicle.set_flight_mode('LAND')
-    #print("Land set")
-#     global vehicle
-#     fix_type=0
-#     try:
-#         fix_type=vehicle.gps_0.fix_type
-#     except Exception as e:
-#         pass
-#     if fix_type >1:
-#         vehicle.mode=VehicleMode("LAND")
-#         print("Vehicle mode set to LAND")
-#         warn = {'context':'INFO','msg':'Vehicle mode set to LAND'}
-#         logger.warning(warn)
+
 
 def start_mission():
     vehicle.arm_and_takeoff(5,auto_mode=True)
-#     print("Auto set")
-#     try:
-#         height =vehicle.location.global_relative_frame.alt
-#         if vehicle.is_armable and height <= 4: # and not flight_checker: #checking if vehicle is armable and fly command is genuine
-
-#             print("FLIGHT INITIATED BY USER")
-#             # Copter should arm in GUIDED mode
-#             vehicle.mode    = VehicleMode("GUIDED")
-#             vehicle.armed   = True
-#             # Confirm vehicle armed before attempting to take off
-#             while not vehicle.armed:
-#                 print (" Waiting for arming...")
-#                 time.sleep(1)
-#             arm.arm_and_takeoff(vehicle,4) #arm and takeoff upto 4 meters
-#             vehicle.mode = VehicleMode("AUTO") #switch vehicle mode to auto
-           
-#             #UNCOMMENT FOR PLANE TAKEOFF
-#             # vehicle.mode    = VehicleMode("GUIDED")
-#             # vehicle.armed   = True
-#             # # Confirm vehicle armed before attempting to take off
-#             # while not vehicle.armed:
-#             #     print (" Waiting for arming...")
-#             #     time.sleep(1)
-#             # vehicle.mode = VehicleMode("AUTO") #switch vehicle mode to auto'''
-#             # flight_checker=True
-#         else:
-#             fix_type=0
-#             try:
-#                 fix_type=vehicle.gps_0.fix_type
-#             except Exception as e:
-#                 pass
-#             if fix_type > 1:
-#                 vehicle.mode=VehicleMode("AUTO")
-#                 print ("Vehicle mode set to AUTO")
-
-#     except Exception as e:
-#         err = {'context':'Prearm','msg':'Pre-arm check failed!!!'}
-#         logger.error(err)
 
         
-def update_mission(location):
+def update_mission(location=None):
     print("Location set to :",location)
     try:
         vehicle.mission_upload()#location)
@@ -158,21 +109,6 @@ def send_mission():
     except Exception as e:
         err = {'context':'Mission','msg':'Mission FIle could not be read'}
         logger.error(err)
-
-#     #read mission
-#     global waypoint
-#     global send_mission_once
-#     try:
-#         print("\nReading mission")
-#         waypoint=mi.save_mission(vehicle)
-#         send_mission_once = True
-#         print("\nMission read")
-#         #if waypoint is read, then set send_mission_once to True so that, mission can be sent instead of data.
-#     except Exception as e:
-#         err = {'context':'Mission','msg':'Mission FIle could not be read'}
-#         logger.error(err)
-    
-
 
 
 def read_data():
@@ -280,28 +216,37 @@ def read_data():
     
 def send_data():
     global send_mission_once
+    global sending_label
     if not send_mission_once:
         global data
-        _data = str(data)
+        sending_label = 'data'
+        _data_s = str(data)
+        _data_d = data
     else:
         global waypoint
-        _data = str(waypoint)
+        _data_s = str(waypoint)
+        _data_d = waypoint
+        print("Waypoints:",waypoint)
+        sending_label = 'waypoints'
         send_mission_once = False
     n = 70 # chunk length
     try:
         START_DATA = "$st@"
         my_device.send_data(remote_device , START_DATA)
         #create a chunk of data and send
-        for i in range(0, len(_data), n):
-            DATA_TO_SEND = _data[i:i+n]
+        for i in range(0, len(_data_s), n):
+            DATA_TO_SEND = _data_s[i:i+n]
             my_device.send_data(remote_device , DATA_TO_SEND)
         END_DATA = "$ed@"
         my_device.send_data(remote_device,END_DATA)
+        socket_a.emit(sending_label,_data_d)
+        socket.wait(seconds=0.2)
     except Exception as e:
             err = {'context':'XBee','msg':'Drone data not sent!!'}
             logging.critical(err)
     
-
+def hello():
+    print("Hello world")
 
 def main():
     #First read mission and send mission
@@ -321,12 +266,10 @@ def main():
             l.start()
         elif(message == 'RTL'):
             print("RTL mode")
-            #vehicle.set_flight_mode('RTL')
             r = threading.Thread(target = set_mode_RTL)
             r.start()
         elif(message == 'INIT'):
             print("init mode")
-            #vehicle.arm_and_takeoff(5,auto_mode=True)
             s = threading.Thread(target = start_mission)
             s.start()
         elif(message[:4] == 'UPDT'):
@@ -339,6 +282,12 @@ def main():
 
     #add a callback for receive data
     my_device.add_data_received_callback(data_receive_callback)
+
+    socket_a.on('LAND',set_mode_LAND)
+    socket_a.on('RTL',set_mode_RTL)
+    socket_a.on('initiate_flight',start_mission)
+    socket_a.on('positions',update_mission)
+    socket_a.on('mission_download',hello)
 
     input()
     sched.shutdown()

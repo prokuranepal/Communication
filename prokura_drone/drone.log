@@ -1,1582 +1,480 @@
-2020-08-31 11:44:46,311 : CRITICAL :: APM:Copter V3.3 (d6053245)
-2020-08-31 11:44:46,312 : CRITICAL :: Frame: QUAD
-2020-08-31 11:44:46,727 : CRITICAL :: Calibrating barometer
-2020-08-31 11:44:48,894 : CRITICAL :: Initialising APM...
-2020-08-31 11:44:51,114 : CRITICAL :: barometer calibration complete
-2020-08-31 11:44:51,115 : CRITICAL :: GROUND START
-2020-08-31 11:44:59,593 : ERROR :: {'context': 'Mission', 'msg': 'Mission FIle could not be read'}
-2020-08-31 11:44:59,812 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:44:59,812 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:44:59,818 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:44:59 +0545)" raised an exception
+2020-08-31 11:49:35,706 : CRITICAL :: APM:Copter V3.3 (d6053245)
+2020-08-31 11:49:35,707 : CRITICAL :: Frame: QUAD
+2020-08-31 11:49:36,122 : CRITICAL :: Calibrating barometer
+2020-08-31 11:49:38,292 : CRITICAL :: Initialising APM...
+2020-08-31 11:49:40,530 : CRITICAL :: barometer calibration complete
+2020-08-31 11:49:40,531 : CRITICAL :: GROUND START
+2020-08-31 11:49:49,082 : ERROR :: {'context': 'Mission', 'msg': 'Mission FIle could not be read'}
+2020-08-31 11:49:50,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:50,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:50 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:50,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:50,141 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:51 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:44:59,912 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:44:59,915 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:44:59,916 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:50,640 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:50 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:51,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:51,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:51,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:51 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,016 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,016 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,016 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:51,641 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:51 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:52,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:52,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:52,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:52 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:52,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:53 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,113 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,113 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:00 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:00,114 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,116 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:53,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:53,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:53,140 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:53 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:53,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:54 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,215 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,215 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,215 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:53,640 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:53 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:54,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:54,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:54,141 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:55 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,315 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,316 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,318 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:54,640 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:54 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:55,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:55,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:55,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:55 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:55,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:56 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,319 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:00 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:00,415 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,415 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,416 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:56,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:56 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:56,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:56,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:56,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:57 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,533 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,533 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,534 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:56,437 : CRITICAL :: {'context': 'XBee', 'msg': 'Drone data not sent!!'}
+2020-08-31 11:49:57,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:57 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:57,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:57,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:57,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:58 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,534 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:00 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:00,613 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,613 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,614 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:57,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:57 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:58,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:58,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:58,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:49:59 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,719 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:00 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:00,720 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,720 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,720 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:49:58,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:58 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:59,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:49:59 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:49:59,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:49:59,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:49:59,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:00 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,812 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:00 +0545)" raised an exception
+2020-08-31 11:50:00,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:00 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:00,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:00,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:00,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:01 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:00,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:00 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:00,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:00,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:00,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:00,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:00 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:01,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:01,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:01,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:02 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,011 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:01,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:01 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:02,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:02 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:02,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:02,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:02,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:03 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:03,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:03 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:03,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:03,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:03,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:04 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,113 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:01 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:01,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,211 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:03,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:03 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:04,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:04,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:04,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:05 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:04,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:04 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:05,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:05 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:05,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:05,140 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:05,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:06 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:01 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:01,412 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,412 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:06,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:06 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:06,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:06,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:06,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:07 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:01 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:01,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:06,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:06 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:07,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:07,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:07,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:08 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:07,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:07 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:08,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:08 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:08,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:08,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:08,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:09 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:01 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:01,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:09,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:09 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:09,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:09,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:09,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:10 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:01 +0545)" raised an exception
+2020-08-31 11:50:09,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:09 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:10,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:10,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:10,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:11 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:01,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:01,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:01 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:01,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:01,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:10,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:10 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:11,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:11 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:11,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:11,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:11,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:12 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,011 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:12,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:12 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:12,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:12,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:12,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:13 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,112 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:02 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:02,112 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:12,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:12 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:13,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:13,140 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:13,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:14 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,212 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:13,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:13 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:14,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:14 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:14,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:14,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:14,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:15 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:02 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:02,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:15,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:15 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:15,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:15,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:15,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:16 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:15,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:15 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:16,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:16,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:16,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:17 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:02 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:02,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,512 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:16,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:16 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:17,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:17 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:17,140 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:17,140 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:17,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:18 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,612 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:18,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:18 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:18,140 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:18,140 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:18,141 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:19 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:02 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:02,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:18,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:18 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:19,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:19,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:19,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:20 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:02 +0545)" raised an exception
+2020-08-31 11:50:19,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:19 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:20,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:20 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:20,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:20,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:20,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:21 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:02,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:02,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:02 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:02,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:02,911 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:21,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:21 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:21,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:21,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:21,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:22 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,011 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:21,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:21 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:22,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:22,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:22,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:23 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:03 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:03,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,111 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:22,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:22 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:23,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:23 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:23,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:23,140 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:23,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:24 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,211 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:24,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:24 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:24,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:24,169 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:24,169 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:25 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:03 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:03,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,311 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:24,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:24 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:25,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:25,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:25,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:26 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,411 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:25,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:25 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:26,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:26 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:26,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:26,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:26,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:27 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:03 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:03,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:27,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:27,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:27,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:28 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:27,140 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:27 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:27,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:27 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:28,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:28,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:28,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:29 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:03 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:03,712 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,712 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,712 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:28,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:28 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:29,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:29 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:29,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:29,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:29,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:30 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,812 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,812 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:03 +0545)" raised an exception
+2020-08-31 11:50:30,138 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:30 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:30,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:30,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:30,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:31 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:03,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:03 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:03,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:03,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:03,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
+2020-08-31 11:50:30,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:30 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:31,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:31,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:31,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:32 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
+2020-08-31 11:50:31,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:31 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:32,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:32 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:32,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:32,140 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:32,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:33 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:04 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:04,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
+2020-08-31 11:50:33,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:33 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:33,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:33,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:33,139 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:34 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,211 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
+2020-08-31 11:50:33,640 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:33 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:34,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:34,140 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:34,144 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:35 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)
   File "drone_communication.py", line 217, in read_data
     data['lat'] = _location.lat
 AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:04 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:04,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:04 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:04,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:04 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:04,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,712 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,815 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:04 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:04,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:04,911 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:04,912 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:04 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:05,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,011 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:05 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:05,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,112 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,212 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,212 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,212 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:05 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:05,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,312 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,412 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,412 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:05 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:05,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,512 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,612 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,612 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:05 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:05,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:05 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:05,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:05,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:05 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:05,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:05,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:06 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:06,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,212 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,377 : CRITICAL :: {'context': 'XBee', 'msg': 'Drone data not sent!!'}
-2020-08-31 11:45:06,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,411 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,611 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:06 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:06,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,712 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,713 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,812 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,812 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,812 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:06 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:06,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:06,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:06 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:06,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:06,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:07 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:07,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,112 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,212 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,212 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,212 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:07 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:07,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,411 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:07 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:07,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,611 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:07 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:07,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,712 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:07 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:07,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:07,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:07 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:07,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:07,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,112 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,211 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:08 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:08,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,311 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:08 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:08,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,611 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:08 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:08,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,812 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,813 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,813 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:08 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:08,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:08 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:08,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:08,912 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:08,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,012 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:09 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:09,112 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,112 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,113 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,212 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,212 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,213 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:09 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:09,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,611 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:09 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:09,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,815 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:09 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:09,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:09 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:09,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:09,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:09,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:10 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:10,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,212 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:10 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:10,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:10 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:10,612 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,612 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,712 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:10 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:10,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:10 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:10,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:10,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:10,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,011 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,111 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:11 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:11,212 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,212 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,212 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:11 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:11,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,412 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,511 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:11 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:11,612 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,612 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:11 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:11,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,712 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,812 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,812 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:11 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:11,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:11 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:11,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:11,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:11,911 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:12 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:12,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,111 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,211 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,311 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,411 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,513 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:12 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:12,513 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,514 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:12 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:12,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,712 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:12 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:12,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:12 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:12,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:12,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:12,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,014 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,015 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,015 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:13 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:13,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,213 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,214 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:13 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:13,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,412 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,412 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,413 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:13 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:13,512 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,512 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,611 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:13 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:13,913 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:13 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:13,914 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:13,914 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:13,915 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,013 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,014 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,014 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,112 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:14 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:14,113 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,113 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,113 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,212 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,212 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,213 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:14 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:14,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,311 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,411 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,411 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:14 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:14,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,512 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,612 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,711 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:14 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:14,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,712 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,812 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,816 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,816 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:14 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:14,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:14 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:14,911 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:14,911 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:14,912 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,011 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,011 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,012 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,111 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,111 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,211 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,211 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,211 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:15 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:15,311 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,312 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,412 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,412 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,413 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,511 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:15 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:15,511 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,512 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,512 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,611 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,612 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,612 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,711 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,711 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,711 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,712 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:15 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:15,811 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,811 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,811 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:15 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:15,911 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:15 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:15,912 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:15,913 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:15,913 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:16 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:16,012 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:16,013 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:16,013 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:16 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:16,111 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:16 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:16,112 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:16,112 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:16,112 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:16 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:16,213 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:16,213 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:16,214 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:16 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:16,311 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.200000], next run at: 2020-08-31 11:45:16 +0545)" skipped: maximum number of running instances reached (1)
-2020-08-31 11:45:16,312 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:16,312 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:16,312 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:16 +0545)" raised an exception
-Traceback (most recent call last):
-  File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
-    retval = job.func(*job.args, **job.kwargs)
-  File "drone_communication.py", line 217, in read_data
-    data['lat'] = _location.lat
-AttributeError: 'Locations' object has no attribute 'lat'
-2020-08-31 11:45:16,412 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
-2020-08-31 11:45:16,412 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
-2020-08-31 11:45:16,412 : ERROR :: Job "read_data (trigger: interval[0:00:00.100000], next run at: 2020-08-31 11:45:16 +0545)" raised an exception
+2020-08-31 11:50:34,639 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:34 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:35,139 : WARNING :: Execution of job "send_data (trigger: interval[0:00:00.500000], next run at: 2020-08-31 11:50:35 +0545)" skipped: maximum number of running instances reached (1)
+2020-08-31 11:50:35,139 : ERROR :: {'context': 'mode', 'msg': 'flight mode not found!!'}
+2020-08-31 11:50:35,139 : ERROR :: {'context': 'arm', 'msg': 'arm status not found!!'}
+2020-08-31 11:50:35,140 : ERROR :: Job "read_data (trigger: interval[0:00:01], next run at: 2020-08-31 11:50:36 +0545)" raised an exception
 Traceback (most recent call last):
   File "/home/sa/anaconda3/envs/dronedel/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
     retval = job.func(*job.args, **job.kwargs)

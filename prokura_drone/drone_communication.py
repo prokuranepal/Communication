@@ -284,9 +284,9 @@ def main():
     send_mission()
 
     #run read_data() every 0.5 seconds
-    sched.add_job(read_data, 'interval', seconds=0.1)
+    sched.add_job(read_data, 'interval', seconds=1)
     #run send_data() every 1 seconds
-    sched.add_job(send_data,'interval',seconds = 0.2)
+    sched.add_job(send_data,'interval',seconds = 0.5)
     sched.start()
 
     def data_receive_callback(xbee_message):
@@ -319,7 +319,7 @@ def main():
     socket_a.on('initiate_flight',start_mission)
     socket_a.on('positions',update_mission)
     socket_a.on('mission_download',hello)
-    socket.wait(seconds=1)
+    # socket.wait(seconds=1)
     input()
     sched.shutdown()
     # my_device.close()

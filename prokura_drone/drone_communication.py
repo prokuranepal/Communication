@@ -12,12 +12,13 @@ from drone import Drone
 # import mission as mi
 
 #Import regarding XBee
-from digi.xbee.devices import XBeeDevice
-from digi.xbee.devices import RemoteXBeeDevice
-from digi.xbee.models.address import XBee64BitAddress
+# from digi.xbee.devices import XBeeDevice
+# from digi.xbee.devices import RemoteXBeeDevice
+# from digi.xbee.models.address import XBee64BitAddress
 
 #Import regarding scheduler tasks
 from apscheduler.schedulers.background import BackgroundScheduler
+from dronekit import connect, VehicleMode
 
 #Import regarding logging
 import logging
@@ -62,9 +63,9 @@ _send_mission_once = None
 sending_label = None
 
 
-my_device = XBeeDevice(PORT, BAUD_RATE)
-my_device.open()
-remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
+# my_device = XBeeDevice(PORT, BAUD_RATE)
+# my_device.open()
+# remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
 
 ## Connect to socket
 socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
@@ -73,10 +74,29 @@ socket_a.emit("joinPi")
 
 
 #print("\nConnecting to vehicle on: %s" % connection_string)
-print("Connecting to vehicle...")
-vehicle = Drone('tcp:127.0.0.1:5762')
-print("Connected!!!")
+# print("Connecting to vehicle...")
+# vehicle = Drone('127.0.0.1:5760')
+# print("Connected!!!")
+#Set up option parsing to get connection string
+import argparse  
+parser = argparse.ArgumentParser(description='Print out vehicle state information. Connects to SITL on local PC by default.')
+parser.add_argument('--connect', 
+                   help="vehicle connection target string. If not specified, SITL automatically started and used.")
+args = parser.parse_args()
 
+connection_string = args.connect
+sitl = None
+data={}
+
+#Start SITL if no connection string specified
+if not connection_string:
+    import dronekit_sitl
+    sitl = dronekit_sitl.start_default()
+    connection_string = sitl.connection_string()
+
+
+print("\nConnecting to vehicle on: %s" % connection_string)
+vehicle = connect(connection_string, wait_ready=True)
 def set_mode_RTL():
     vehicle.set_flight_mode('RTL')
 
@@ -85,7 +105,8 @@ def set_mode_LAND():
     vehicle.set_flight_mode('LAND')
 
 
-def start_mission():
+def start_mission(var):
+    print("flying")
     vehicle.arm_and_takeoff(5,auto_mode=True)
 
         
@@ -101,12 +122,13 @@ def update_mission(location=None):
 
 def send_mission():
     global waypoint
-    global send_mission_once
+    global _send_mission_once
     try:
         waypoint = vehicle.flight_plan
-        send_mission_once = True
+        _send_mission_once = True
         print("Mission send")
     except Exception as e:
+        print("eror sending mission", str(e))
         err = {'context':'Mission','msg':'Mission FIle could not be read'}
         logger.error(err)
 
@@ -215,35 +237,44 @@ def read_data():
     
     
 def send_data():
-    global send_mission_once
+    global _send_mission_once
     global sending_label
-    if not send_mission_once:
-        global data
-        sending_label = 'data'
-        _data_s = str(data)
-        _data_d = data
-    else:
-        global waypoint
-        _data_s = str(waypoint)
-        _data_d = waypoint
-        print("Waypoints:",waypoint)
-        sending_label = 'waypoints'
-        send_mission_once = False
+    global data
+    global waypoint
+    print("working")
+    _data_s=""
+    _data_d={}
+    try:
+        if not _send_mission_once:
+            sending_label = 'data'
+            _data_s = str(data)
+            _data_d = data
+        else:
+            _data_s = str(waypoint)
+            _data_d = waypoint
+            print("Waypoints:",waypoint)
+            sending_label = 'waypoints'
+            _send_mission_once = False
+    except Exception as e:
+        print(str(e))
     n = 70 # chunk length
     try:
         START_DATA = "$st@"
-        my_device.send_data(remote_device , START_DATA)
+        # my_device.send_data(remote_device , START_DATA)
         #create a chunk of data and send
         for i in range(0, len(_data_s), n):
             DATA_TO_SEND = _data_s[i:i+n]
-            my_device.send_data(remote_device , DATA_TO_SEND)
+            # my_device.send_data(remote_device , DATA_TO_SEND)
         END_DATA = "$ed@"
-        my_device.send_data(remote_device,END_DATA)
+        # my_device.send_data(remote_device,END_DATA)
+        print("emitting to",sending_label," ", _data_d)
         socket_a.emit(sending_label,_data_d)
-        socket.wait(seconds=0.2)
+        socket.wait(seconds=1)
     except Exception as e:
-            err = {'context':'XBee','msg':'Drone data not sent!!'}
-            logging.critical(err)
+        print("emitting to",str(e))
+        err = {'context':'XBee','msg':'Drone data not sent!!'}
+        logging.critical(err)
+
     
 def hello():
     print("Hello world")
@@ -253,9 +284,9 @@ def main():
     send_mission()
 
     #run read_data() every 0.5 seconds
-    sched.add_job(read_data, 'interval', seconds=0.5)
+    sched.add_job(read_data, 'interval', seconds=0.1)
     #run send_data() every 1 seconds
-    sched.add_job(send_data,'interval',seconds = 1)
+    sched.add_job(send_data,'interval',seconds = 0.2)
     sched.start()
 
     def data_receive_callback(xbee_message):
@@ -281,17 +312,17 @@ def main():
             m.start()
 
     #add a callback for receive data
-    my_device.add_data_received_callback(data_receive_callback)
+    # my_device.add_data_received_callback(data_receive_callback)
 
     socket_a.on('LAND',set_mode_LAND)
     socket_a.on('RTL',set_mode_RTL)
     socket_a.on('initiate_flight',start_mission)
     socket_a.on('positions',update_mission)
     socket_a.on('mission_download',hello)
-
+    socket.wait(seconds=1)
     input()
     sched.shutdown()
-    my_device.close()
+    # my_device.close()
 
 if __name__ == '__main__':
     main()

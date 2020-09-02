@@ -6,6 +6,7 @@ import time
 
 #Drone import
 from drone import Drone
+from command_queue import CommandQueue
 
 #Import for missions
 # import upload_mission as up
@@ -60,7 +61,7 @@ data = {}
 waypoint = {}
 _send_mission_once = None
 sending_label = None
-
+command_queue = CommandQueue()
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
@@ -77,19 +78,40 @@ print("Connecting to vehicle...")
 vehicle = Drone('tcp:127.0.0.1:5762')
 print("Connected!!!")
 
-def set_mode_RTL(var = None):
-    print("RTL mode set with var",var)
-    vehicle.set_flight_mode('RTL')
+def is_timestamp_received(var):
+    if command_queue.__contains__(var):
+        return True
+    else:
+        return False
 
-    
+def timestamp_add(var):
+    command_queue._put(var)
+
+
+def set_mode_RTL(var = None):
+    if not is_timestamp_received(var):
+        timestamp_add(var)
+        vehicle.set_flight_mode('RTL')
+        print("RTL mode set")
+    else:
+        print("RTL Message came again so ignoring")
+
 def set_mode_LAND(var = None):
-    print("Land mode set with var",var)
-    vehicle.set_flight_mode('LAND')
+    if not is_timestamp_received(var):
+        timestamp_add(var)
+        vehicle.set_flight_mode('LAND')
+        print("LAND mode set")
+    else:
+        print("LAND Message came again so ignoring")
 
 
 def start_mission(var = None):
-    print("Mission start")
-    vehicle.arm_and_takeoff(5,auto_mode=True)
+    if not is_timestamp_received(var):
+        timestamp_add(var)
+        vehicle.arm_and_takeoff(5,auto_mode=True)
+        print("Arm and takeoff")
+    else:
+        print("Arm & takeoff came again so ignoring")
 
         
 def update_mission(location=None):
@@ -103,16 +125,20 @@ def update_mission(location=None):
 
 
 def send_mission(var = None):
-    global waypoint
-    global _send_mission_once
-    try:
-        waypoint = vehicle.flight_plan
-        _send_mission_once = True
-        print("Mission send")
-    except Exception as e:
-        print("eror sending mission", str(e))
-        err = {'context':'Mission','msg':'Mission FIle could not be read'}
-        logger.error(err)
+    if not is_timestamp_received(var):
+        timestamp_add(var)
+        global waypoint
+        global _send_mission_once
+        try:
+            waypoint = vehicle.flight_plan
+            _send_mission_once = True
+            print("Mission send")
+        except Exception as e:
+            print("eror sending mission", str(e))
+            err = {'context':'Mission','msg':'Mission FIle could not be read'}
+            logger.error(err)
+    else:
+        print("Send mission came again so ignoring")
 
 
 def read_data():

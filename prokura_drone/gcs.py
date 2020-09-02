@@ -64,15 +64,15 @@ def send_data(address,message):
 def send_data_land(var):
     print(var)
     print("SET TO LAND")
-    send_data(jt_address['JT601'],'LAND')
+    send_data(jt_address['JT601'],'LAND:'+str(var))
 
 def send_data_rtl(var):
     print("Set to rtL")
-    send_data(jt_address['JT601'],'RTL')
+    send_data(jt_address['JT601'],'RTL:'+str(var))
 
 def send_data_initiate(var):
     print("Initiate flight")
-    send_data(jt_address['JT601'],'INIT')
+    send_data(jt_address['JT601'],'INIT:'+str(var))
 
 def send_data_update_mission(var):
     print("Updating Mission")
@@ -80,7 +80,7 @@ def send_data_update_mission(var):
 
 def send_data_receive_mission(var):
     print("Sending Mission")
-    send_data(jt_address['JT601'],'MISS')
+    send_data(jt_address['JT601'],'MISS:'+str(var))
 
              
 def main():

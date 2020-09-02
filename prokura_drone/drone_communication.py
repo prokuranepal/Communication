@@ -77,15 +77,18 @@ print("Connecting to vehicle...")
 vehicle = Drone('tcp:127.0.0.1:5762')
 print("Connected!!!")
 
-def set_mode_RTL():
+def set_mode_RTL(var = None):
+    print("RTL mode set with var",var)
     vehicle.set_flight_mode('RTL')
 
     
-def set_mode_LAND():
+def set_mode_LAND(var = None):
+    print("Land mode set with var",var)
     vehicle.set_flight_mode('LAND')
 
 
-def start_mission():
+def start_mission(var = None):
+    print("Mission start")
     vehicle.arm_and_takeoff(5,auto_mode=True)
 
         
@@ -99,14 +102,15 @@ def update_mission(location=None):
         logger.error(err)
 
 
-def send_mission():
+def send_mission(var = None):
     global waypoint
-    global send_mission_once
+    global _send_mission_once
     try:
         waypoint = vehicle.flight_plan
-        send_mission_once = True
+        _send_mission_once = True
         print("Mission send")
     except Exception as e:
+        print("eror sending mission", str(e))
         err = {'context':'Mission','msg':'Mission FIle could not be read'}
         logger.error(err)
 
@@ -212,12 +216,12 @@ def read_data():
     #data['lidar'] = _lidar
     data['volt'] = _battery.voltage
     data['conn'] = 'True'
-    
+    data['timestamp'] = time.time()
     
 def send_data():
-    global send_mission_once
+    global _send_mission_once
     global sending_label
-    if not send_mission_once:
+    if not _send_mission_once:
         global data
         sending_label = 'data'
         _data_s = str(data)
@@ -228,7 +232,7 @@ def send_data():
         _data_d = waypoint
         print("Waypoints:",waypoint)
         sending_label = 'waypoints'
-        send_mission_once = False
+        _send_mission_once = False
     n = 70 # chunk length
     try:
         START_DATA = "$st@"
@@ -239,14 +243,18 @@ def send_data():
             my_device.send_data(remote_device , DATA_TO_SEND)
         END_DATA = "$ed@"
         my_device.send_data(remote_device,END_DATA)
-        socket_a.emit(sending_label,_data_d)
-        socket.wait(seconds=0.2)
     except Exception as e:
-            err = {'context':'XBee','msg':'Drone data not sent!!'}
+            err = {'context':'XBee','msg':'Drone data not sent from xbee!!'}
             logging.critical(err)
+
+    try:
+        socket_a.emit(sending_label,_data_d)
+        socket.wait(seconds=1)
+    except Exception as e:
+        pass
     
-def hello():
-    print("Hello world")
+def hello(var):
+    print("Timestamp for hello:",var)
 
 def main():
     #First read mission and send mission
@@ -260,24 +268,28 @@ def main():
 
     def data_receive_callback(xbee_message):
         message = xbee_message.data.decode()
-        if(message == 'LAND'):
+        if(message[:4] == 'LAND'):
             print("Land Mode")
-            l = threading.Thread(target = set_mode_LAND)
+            timestamp = message[5:]
+            l = threading.Thread(target = set_mode_LAND,args = (timestamp,))
             l.start()
-        elif(message == 'RTL'):
+        elif(message[:3] == 'RTL'):
             print("RTL mode")
-            r = threading.Thread(target = set_mode_RTL)
+            timestamp = message[4:]
+            r = threading.Thread(target = set_mode_RTL,args = (timestamp,))
             r.start()
-        elif(message == 'INIT'):
+        elif(message[:4] == 'INIT'):
             print("init mode")
-            s = threading.Thread(target = start_mission)
+            timestamp = message[5:]
+            s = threading.Thread(target = start_mission,args = (timestamp,))
             s.start()
         elif(message[:4] == 'UPDT'):
             location = message[5:]
             u = threading.Thread(target = update_mission,args = (location,))
             u.start()
-        elif(message == 'MISS'):
-            m = threading.Thread(target = send_mission)
+        elif(message[:4] == 'MISS'):
+            timestamp = message[5:]
+            m = threading.Thread(target = send_mission,args = (timestamp,))
             m.start()
 
     #add a callback for receive data

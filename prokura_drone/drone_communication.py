@@ -282,6 +282,12 @@ def send_data():
 def hello(var):
     print("Timestamp for hello:",var)
 
+def flush_rx_data():
+    if(command_queue._size > 2): # Always maintain atleast 2 command in the set so that recent message wont be deleted
+        a = command_queue._get()
+        print("Popped out ",a," From queue")
+        pass
+
 def main():
     #First read mission and send mission
     send_mission()
@@ -290,6 +296,7 @@ def main():
     sched.add_job(read_data, 'interval', seconds=0.5)
     #run send_data() every 1 seconds
     sched.add_job(send_data,'interval',seconds = 1)
+    sched.add_job(flush_rx_data,'interval',seconds = 3)
     sched.start()
 
     def data_receive_callback(xbee_message):

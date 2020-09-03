@@ -14,3 +14,7 @@ class CommandQueue(Queue.Queue):
     def __contains__(self, item):
         with self.mutex:
             return item in self.queue
+
+    @property
+    def _size(self):
+        return len(self.queue)

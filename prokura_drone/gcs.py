@@ -3,7 +3,7 @@ from socketIO_client_nexus import SocketIO, BaseNamespace
 import threading
 import json
 
-PORT = "/dev/ttyUSB1"
+PORT = "/dev/ttyUSB0"
 BAUD_RATE = 230400
 
 my_device = XBeeDevice(PORT, BAUD_RATE)

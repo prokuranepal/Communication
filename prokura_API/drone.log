@@ -1,0 +1,5 @@
+2020-09-14 17:37:04,503 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-09-14 17:37:04 +0545)" skipped: maximum number of running instances reached (1)
+2020-09-14 17:37:04,730 : CRITICAL :: {'context': 'XBee', 'msg': 'Drone data not sent from xbee!!'}
+2020-09-14 17:37:05,498 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-09-14 17:37:05 +0545)" skipped: maximum number of running instances reached (1)
+2020-09-14 17:37:06,498 : WARNING :: Execution of job "read_data (trigger: interval[0:00:00.500000], next run at: 2020-09-14 17:37:06 +0545)" skipped: maximum number of running instances reached (1)
+2020-09-14 17:37:06,498 : WARNING :: Execution of job "send_data (trigger: interval[0:00:01], next run at: 2020-09-14 17:37:06 +0545)" skipped: maximum number of running instances reached (1)

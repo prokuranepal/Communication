@@ -5,7 +5,7 @@ from __future__ import print_function
 import time
 
 #Drone import
-from drone import Drone
+from prokura_drone.drone import Drone
 from command_queue import CommandQueue
 
 #Import for missions
@@ -122,6 +122,10 @@ def update_mission(location=None):
     except Exception as e:
         err={'context':'GPS/Mission','msg':'Mission FIle could not be loaded'}
         logger.error(err)
+
+def new_mission_update_send(var):
+    mission_waypoints = var['waypoints']
+    vehicle.new_mission_upload(mission_waypoints)
 
 
 def send_mission(var = None):
@@ -333,6 +337,7 @@ def main():
     socket_a.on('initiate_flight',start_mission)
     socket_a.on('positions',update_mission)
     socket_a.on('mission_download',hello)
+    socket_a.on('mission',new_mission_update_send)
 
     input()
     sched.shutdown()

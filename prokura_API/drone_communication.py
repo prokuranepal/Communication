@@ -68,9 +68,10 @@ my_device.open()
 remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
 
 ## Connect to socket
-socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+#socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+socket = SocketIO('http://582eb8945f7c.ngrok.io', verify =True)
 socket_a = socket.define(BaseNamespace,'/JT601')
-socket_a.emit("joinPi")
+socket_a.emit("joinDrone")
 
 
 #print("\nConnecting to vehicle on: %s" % connection_string)
@@ -78,27 +79,34 @@ print("Connecting to vehicle...")
 vehicle = Drone('tcp:127.0.0.1:5762')
 print("Connected!!!")
 
-def is_timestamp_received(var):
-    if command_queue.__contains__(var):
+
+def on_reconnect():
+    socket_a.emit("joinDrone")
+
+def is_timestamp_received(time):
+    if command_queue.__contains__(time):
         return True
     else:
         return False
 
-def timestamp_add(var):
-    command_queue._put(var)
+def timestamp_add(time):
+    command_queue._put(time)
 
 
 def set_mode_RTL(var = None):
-    if not is_timestamp_received(var):
-        timestamp_add(var)
+    time = var['timestamp']
+    if not is_timestamp_received(time):
+        timestamp_add(time)
         vehicle.set_flight_mode('RTL')
         print("RTL mode set")
     else:
         print("RTL Message came again so ignoring")
 
 def set_mode_LAND(var = None):
-    if not is_timestamp_received(var):
-        timestamp_add(var)
+    print("Came here")
+    time = var['timestamp']
+    if not is_timestamp_received(time):
+        timestamp_add(time)
         vehicle.set_flight_mode('LAND')
         print("LAND mode set")
     else:
@@ -106,8 +114,9 @@ def set_mode_LAND(var = None):
 
 
 def start_mission(var = None):
-    if not is_timestamp_received(var):
-        timestamp_add(var)
+    time = var['timestamp']
+    if not is_timestamp_received(time):
+        timestamp_add(time)
         vehicle.arm_and_takeoff(5,auto_mode=True)
         print("Arm and takeoff")
     else:
@@ -124,11 +133,13 @@ def update_mission(location=None):
         logger.error(err)
 
 def new_mission_update_send(var):
-    mission_waypoints = var['waypoints']
+    time = var['timestamp']
+    mission_waypoints = var['mission']['waypoints']
     vehicle.new_mission_upload(mission_waypoints)
 
 
 def send_mission(var = None):
+    #time = var['timestamp']
     if not is_timestamp_received(var):
         timestamp_add(var)
         global waypoint
@@ -286,6 +297,14 @@ def send_data():
 def hello(var):
     print("Timestamp for hello:",var)
 
+def send_home_position(var):
+    home = {
+        'lat':vehicle._home.lat,
+        'lng':vehicle._home.lon
+    }
+    socket_a.emit('homePosition',home)
+    print("Home sent")
+
 def flush_rx_data():
     if(command_queue._size > 2): # Always maintain atleast 2 command in the set so that recent message wont be deleted
         a = command_queue._get()
@@ -294,6 +313,12 @@ def flush_rx_data():
 
 def main():
     #First read mission and send mission
+    home = {
+        'lat':vehicle._home.lat,
+        'lng':vehicle._home.lon
+    }
+    socket_a.emit('homePosition',home)
+    print("Home sent")
     send_mission()
 
     #run read_data() every 0.5 seconds
@@ -334,10 +359,12 @@ def main():
 
     socket_a.on('LAND',set_mode_LAND)
     socket_a.on('RTL',set_mode_RTL)
-    socket_a.on('initiate_flight',start_mission)
+    socket_a.on('initiateFlight',start_mission)
     socket_a.on('positions',update_mission)
-    socket_a.on('mission_download',hello)
+    socket_a.on('getMission',send_mission)
     socket_a.on('mission',new_mission_update_send)
+    socket_a.on('homePosition',send_home_position)
+    socket_a.on('reconnect',on_reconnect)
 
     input()
     sched.shutdown()

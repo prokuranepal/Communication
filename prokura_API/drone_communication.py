@@ -69,14 +69,16 @@ remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REM
 
 ## Connect to socket
 #socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
-socket = SocketIO('http://582eb8945f7c.ngrok.io', verify =True)
+print("Connecting to server")
+socket = SocketIO('http://711ffdf65ff0.ngrok.io', verify =True)
 socket_a = socket.define(BaseNamespace,'/JT601')
 socket_a.emit("joinDrone")
+print("Connected to server")
 
 
 #print("\nConnecting to vehicle on: %s" % connection_string)
 print("Connecting to vehicle...")
-vehicle = Drone('127.0.0.1:14550')
+vehicle = Drone('tcp:127.0.0.1:5762')
 print("Connected!!!")
 
 
@@ -272,7 +274,7 @@ def send_data():
         _data_s = str(waypoint)
         _data_d = waypoint
         print("Waypoints:",waypoint)
-        sending_label = 'waypoints'
+        sending_label = 'getMission'
         _send_mission_once = False
     n = 70 # chunk length
     try:

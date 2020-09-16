@@ -16,16 +16,16 @@ data_queue2 = ''
 jt_address = {'JT601':ADDRESS1,'JT602':ADDRESS2}
 
 count = 0
-socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+socket = SocketIO('http://711ffdf65ff0.ngrok.io', verify =True)
 #socket = SocketIO('http://192.168.0.2', 3000, verify=True) #establish socket connection to desired server
 # while not socket._connected:
 #     socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
 
 socket_a = socket.define(BaseNamespace,'/JT601')
-socket_a.emit("joinPi")
+socket_a.emit("joinDrone")
 
 socket_b = socket.define(BaseNamespace,'/JT602')
-socket_b.emit("joinPi")
+socket_b.emit("joinDrone")
 
 def socket_function(parsed_data,drone):
     global count
@@ -82,6 +82,7 @@ def send_data_receive_mission(var):
     print("Sending Mission")
     send_data(jt_address['JT601'],'MISS:'+str(var))
 
+
              
 def main():
     def data_receive_callback(xbee_message):
@@ -106,9 +107,9 @@ def main():
 
     my_device.add_data_received_callback(data_receive_callback)
 
-    socket_a.on('LAND',send_data_land)
-    socket_a.on('RTL',send_data_rtl)
-    socket_a.on('initiate_flight',send_data_initiate)
+    socket_a.on('land',send_data_land)
+    socket_a.on('rtl',send_data_rtl)
+    socket_a.on('initiateFlight',send_data_initiate)
     socket_a.on('positions',send_data_update_mission)
     socket_a.on('mission_download',send_data_receive_mission)
 

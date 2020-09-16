@@ -76,7 +76,7 @@ socket_a.emit("joinDrone")
 
 #print("\nConnecting to vehicle on: %s" % connection_string)
 print("Connecting to vehicle...")
-vehicle = Drone('tcp:127.0.0.1:5762')
+vehicle = Drone('127.0.0.1:14550')
 print("Connected!!!")
 
 
@@ -357,8 +357,8 @@ def main():
     #add a callback for receive data
     my_device.add_data_received_callback(data_receive_callback)
 
-    socket_a.on('LAND',set_mode_LAND)
-    socket_a.on('RTL',set_mode_RTL)
+    socket_a.on('land',set_mode_LAND)
+    socket_a.on('rtl',set_mode_RTL)
     socket_a.on('initiateFlight',start_mission)
     socket_a.on('positions',update_mission)
     socket_a.on('getMission',send_mission)

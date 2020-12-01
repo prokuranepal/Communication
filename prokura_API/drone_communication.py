@@ -1,44 +1,44 @@
-#Import regarding dronekit
+# Import regarding dronekit
 from __future__ import print_function
 # from dronekit import connect, VehicleMode, LocationGlobal, LocationGlobalRelative
 # import arm_takeoff as arm
 import time
 
-#Drone import
+# Drone import
 from prokura_drone.drone import Drone
 from command_queue import CommandQueue
 
-#Import for missions
+# Import for missions
 # import upload_mission as up
 # import mission as mi
 
-#Import regarding XBee
+# Import regarding XBee
 from digi.xbee.devices import XBeeDevice
 from digi.xbee.devices import RemoteXBeeDevice
 from digi.xbee.models.address import XBee64BitAddress
 
-#Import regarding scheduler tasks
+# Import regarding scheduler tasks
 from apscheduler.schedulers.background import BackgroundScheduler
 
-#Import regarding logging
+# Import regarding logging
 import logging
 
-#Import for threading
+# Import for threading
 import threading
 
 from socketIO_client_nexus import SocketIO, BaseNamespace
 
 
-#define for logging
-#Create and configure logger 
-logging.basicConfig(filename="drone.log", 
-                    format='%(asctime)s : %(levelname)s :: %(message)s', 
-                    filemode='w') 
+# define for logging
+# Create and configure logger
+logging.basicConfig(filename="drone.log",
+                    format='%(asctime)s : %(levelname)s :: %(message)s',
+                    filemode='w')
 
-#Creating an object 
-logger=logging.getLogger() 
-  
-#Setting the threshold of logger to WARNING. i.e only warning, error, and critical message is shown in log. 
+# Creating an object
+logger = logging.getLogger()
+
+# Setting the threshold of logger to WARNING. i.e only warning, error, and critical message is shown in log.
 '''
  Thresholds:
  DEBUG
@@ -47,15 +47,15 @@ logger=logging.getLogger()
  ERROR
  CRITICAL 
 '''
-logger.setLevel(logging.WARNING) 
+logger.setLevel(logging.WARNING)
 
 # define background scheduler
 sched = BackgroundScheduler()
 
-#configure for XBee
+# configure for XBee
 PORT = '/dev/ttyUSB0'
 BAUD_RATE = 230400
-REMOTE_DRONE_ID = "0013A200419B5208"
+REMOTE_DRONE_ID = "0013A2004108025F"
 DRONE_ID = '#d1'
 data = {}
 waypoint = {}
@@ -65,25 +65,26 @@ command_queue = CommandQueue()
 
 my_device = XBeeDevice(PORT, BAUD_RATE)
 my_device.open()
-remote_device = RemoteXBeeDevice(my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
+remote_device = RemoteXBeeDevice(
+    my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
 
-## Connect to socket
-#socket = SocketIO('https://nicwebpage.herokuapp.com', verify =True)
+# Connect to socket
 print("Connecting to server")
-socket = SocketIO('http://711ffdf65ff0.ngrok.io', verify =True)
-socket_a = socket.define(BaseNamespace,'/JT601')
+socket = SocketIO('dms.prokurainnovations.com', 3001, verify=True)
+socket_a = socket.define(BaseNamespace, '/JT601')
 socket_a.emit("joinDrone")
 print("Connected to server")
 
 
-#print("\nConnecting to vehicle on: %s" % connection_string)
+# Connect to drone
 print("Connecting to vehicle...")
-vehicle = Drone('tcp:127.0.0.1:5762')
+vehicle = Drone('127.0.0.1:14550')
 print("Connected!!!")
 
 
 def on_reconnect():
     socket_a.emit("joinDrone")
+
 
 def is_timestamp_received(time):
     if command_queue.__contains__(time):
@@ -91,11 +92,12 @@ def is_timestamp_received(time):
     else:
         return False
 
+
 def timestamp_add(time):
     command_queue._put(time)
 
 
-def set_mode_RTL(var = None):
+def set_mode_RTL(var=None):
     time = var['timestamp']
     if not is_timestamp_received(time):
         timestamp_add(time)
@@ -104,7 +106,8 @@ def set_mode_RTL(var = None):
     else:
         print("RTL Message came again so ignoring")
 
-def set_mode_LAND(var = None):
+
+def set_mode_LAND(var=None):
     print("Came here")
     time = var['timestamp']
     if not is_timestamp_received(time):
@@ -115,24 +118,26 @@ def set_mode_LAND(var = None):
         print("LAND Message came again so ignoring")
 
 
-def start_mission(var = None):
+def start_mission(var=None):
     time = var['timestamp']
     if not is_timestamp_received(time):
         timestamp_add(time)
-        vehicle.arm_and_takeoff(5,auto_mode=True)
+        vehicle.arm_and_takeoff(5, auto_mode=True)
         print("Arm and takeoff")
     else:
         print("Arm & takeoff came again so ignoring")
 
-        
+
 def update_mission(location=None):
-    print("Location set to :",location)
+    print("Location set to :", location)
     try:
-        vehicle.mission_upload()#location)
-        print (location, "loaded")
+        vehicle.mission_upload()  # location)
+        print(location, "loaded")
     except Exception as e:
-        err={'context':'GPS/Mission','msg':'Mission FIle could not be loaded'}
+        err = {'context': 'GPS/Mission',
+               'msg': 'Mission FIle could not be loaded'}
         logger.error(err)
+
 
 def new_mission_update_send(var):
     time = var['timestamp']
@@ -140,7 +145,7 @@ def new_mission_update_send(var):
     vehicle.new_mission_upload(mission_waypoints)
 
 
-def send_mission(var = None):
+def send_mission(var=None):
     #time = var['timestamp']
     if not is_timestamp_received(var):
         timestamp_add(var)
@@ -152,7 +157,7 @@ def send_mission(var = None):
             print("Mission send")
         except Exception as e:
             print("eror sending mission", str(e))
-            err = {'context':'Mission','msg':'Mission FIle could not be read'}
+            err = {'context': 'Mission', 'msg': 'Mission FIle could not be read'}
             logger.error(err)
     else:
         print("Send mission came again so ignoring")
@@ -163,81 +168,81 @@ def read_data():
         #_location = vehicle.location.global_relative_frame
         _location = vehicle.location
     except Exception as e:
-        err = {'context':'location','msg':'location not found!!'}
+        err = {'context': 'location', 'msg': 'location not found!!'}
         logger.error(err)
 
     try:
         _attitude = vehicle.attitude
     except Exception as e:
-        err = {'context':'attitude','msg':'attitude not found!!'}
+        err = {'context': 'attitude', 'msg': 'attitude not found!!'}
         logger.error(err)
-    
+
     try:
         _velocity = vehicle.velocity
     except Exception as e:
-        err = {'context':'velocity','msg':'velocity not found!!'}
+        err = {'context': 'velocity', 'msg': 'velocity not found!!'}
         logger.error(err)
-    
+
     try:
         _heading = vehicle.heading
     except Exception as e:
-        err = {'context':'heading','msg':'heading not found!!'}
+        err = {'context': 'heading', 'msg': 'heading not found!!'}
         logger.error(err)
-        
+
     try:
         _groundspeed = vehicle.groundspeed
     except Exception as e:
-        err = {'context':'groundspeed','msg':'groundspeed not found!!'}
+        err = {'context': 'groundspeed', 'msg': 'groundspeed not found!!'}
         logger.error(err)
 
-    try:    
+    try:
         _airspeed = vehicle.airspeed
     except Exception as e:
-        err = {'context':'airspeed','msg':'airspeed not found!!'}
+        err = {'context': 'airspeed', 'msg': 'airspeed not found!!'}
         logger.error(err)
-        
+
     try:
         _mode = vehicle.flight_mode
     except Exception as e:
-        err = {'context':'mode','msg':'flight mode not found!!'}
+        err = {'context': 'mode', 'msg': 'flight mode not found!!'}
         logger.error(err)
-        
+
     try:
         _is_arm = vehicle.is_armed
     except Exception as e:
-        err = {'context':'arm','msg':'arm status not found!!'}
+        err = {'context': 'arm', 'msg': 'arm status not found!!'}
         logger.error(err)
-    
+
     try:
         _ekf_ok = vehicle.ekf_ok
     except Exception as e:
-        err = {'context':'ekf','msg':'ekf status not found!!'}
+        err = {'context': 'ekf', 'msg': 'ekf status not found!!'}
         logger.error(err)
-    
+
     try:
         _status = vehicle.system_status
     except Exception as e:
-        err = {'context':'status','msg':'vehicle status not found!!'}
+        err = {'context': 'status', 'msg': 'vehicle status not found!!'}
         logger.error(err)
-        
+
     try:
         _gps = vehicle.gps_0
     except Exception as e:
-        err = {'context':'gps','msg':'gps status not found!!'}
+        err = {'context': 'gps', 'msg': 'gps status not found!!'}
         logger.error(err)
 
-    try:    
+    try:
         _battery = vehicle.battery
     except Exception as e:
-        err = {'context':'battery','msg':'battery status not found!!'}
+        err = {'context': 'battery', 'msg': 'battery status not found!!'}
         logger.error(err)
 
-    # try:    
+    # try:
     #     _lidar = vehicle.rangefinder.distance
     # except Exception as e:
     #     err = {'context':'lidar','msg':'lidar data not found!!'}
     #     logger.error(err)
-    
+
     data['ID'] = DRONE_ID
     data['lat'] = _location.lat
     data['lng'] = _location.lon
@@ -260,7 +265,8 @@ def read_data():
     data['volt'] = _battery.voltage
     data['conn'] = 'True'
     data['timestamp'] = time.time()
-    
+
+
 def send_data():
     global _send_mission_once
     global sending_label
@@ -273,61 +279,84 @@ def send_data():
         global waypoint
         _data_s = str(waypoint)
         _data_d = waypoint
-        print("Waypoints:",waypoint)
+        print("Waypoints:", waypoint)
         sending_label = 'getMission'
         _send_mission_once = False
-    n = 70 # chunk length
+
+    n = 255  # chunk length
+
+    # send start byte through XBee
     try:
         START_DATA = "$st@"
-        my_device.send_data(remote_device , START_DATA)
-        #create a chunk of data and send
+        my_device.send_data(remote_device, START_DATA)
+    except Exception as e:
+        err = {'context': 'XBee',
+               'msg': 'Drone data not sent from xbee, START_BYTE!!'}
+        logging.critical(err)
+
+    # send data through XBee
+    try:
+        # create a chunk of data and send
         for i in range(0, len(_data_s), n):
             DATA_TO_SEND = _data_s[i:i+n]
-            my_device.send_data(remote_device , DATA_TO_SEND)
-        END_DATA = "$ed@"
-        my_device.send_data(remote_device,END_DATA)
+            my_device.send_data(remote_device, DATA_TO_SEND)
     except Exception as e:
-            err = {'context':'XBee','msg':'Drone data not sent from xbee!!'}
-            logging.critical(err)
+        err = {'context': 'XBee', 'msg': 'Drone data not sent from xbee, DATA!!'}
+        logging.critical(err)
 
+    # send end byte through XBee
     try:
-        socket_a.emit(sending_label,_data_d)
-        socket.wait(seconds=1)
+        END_DATA = "$ed@"
+        my_device.send_data(remote_device, END_DATA)
     except Exception as e:
-        pass
-    
+        err = {'context': 'XBee',
+               'msg': 'Drone data not sent from xbee, END_BYTE!!'}
+        logging.critical(err)
+
+    # send data through Internet
+    try:
+        socket_a.emit(sending_label, _data_d)
+        socket.wait(seconds=0.7)
+    except Exception as e:
+        err = {'context': 'Internet', 'msg': 'Drone data not sent from GSM!!'}
+        logging.critical(err)
+
+
 def hello(var):
-    print("Timestamp for hello:",var)
+    print("Timestamp for hello:", var)
+
 
 def send_home_position(var):
     home = {
-        'lat':vehicle._home.lat,
-        'lng':vehicle._home.lon
+        'lat': vehicle._home.lat,
+        'lng': vehicle._home.lon
     }
-    socket_a.emit('homePosition',home)
+    socket_a.emit('homePosition', home)
     print("Home sent")
 
+
 def flush_rx_data():
-    if(command_queue._size > 2): # Always maintain atleast 2 command in the set so that recent message wont be deleted
+    if(command_queue._size > 2):  # Always maintain atleast 2 command in the set so that recent message wont be deleted
         a = command_queue._get()
-        print("Popped out ",a," From queue")
+        print("Popped out ", a, " From queue")
         pass
 
+
 def main():
-    #First read mission and send mission
+    # First read mission and send mission
     home = {
-        'lat':vehicle._home.lat,
-        'lng':vehicle._home.lon
+        'lat': vehicle._home.lat,
+        'lng': vehicle._home.lon
     }
-    socket_a.emit('homePosition',home)
+    socket_a.emit('homePosition', home)
     print("Home sent")
     send_mission()
 
-    #run read_data() every 0.5 seconds
-    sched.add_job(read_data, 'interval', seconds=0.5)
-    #run send_data() every 1 seconds
-    sched.add_job(send_data,'interval',seconds = 1)
-    sched.add_job(flush_rx_data,'interval',seconds = 3)
+    # run read_data() every 0.5 seconds
+    sched.add_job(read_data, 'interval', seconds=0.25)
+    # run send_data() every 1 seconds
+    sched.add_job(send_data, 'interval', seconds=0.5)
+    sched.add_job(flush_rx_data, 'interval', seconds=3)
     sched.start()
 
     def data_receive_callback(xbee_message):
@@ -335,44 +364,43 @@ def main():
         if(message[:4] == 'LAND'):
             print("Land Mode")
             timestamp = message[5:]
-            l = threading.Thread(target = set_mode_LAND,args = (timestamp,))
+            l = threading.Thread(target=set_mode_LAND, args=(timestamp,))
             l.start()
         elif(message[:3] == 'RTL'):
             print("RTL mode")
             timestamp = message[4:]
-            r = threading.Thread(target = set_mode_RTL,args = (timestamp,))
+            r = threading.Thread(target=set_mode_RTL, args=(timestamp,))
             r.start()
         elif(message[:4] == 'INIT'):
             print("init mode")
             timestamp = message[5:]
-            s = threading.Thread(target = start_mission,args = (timestamp,))
+            s = threading.Thread(target=start_mission, args=(timestamp,))
             s.start()
         elif(message[:4] == 'UPDT'):
             location = message[5:]
-            u = threading.Thread(target = update_mission,args = (location,))
+            u = threading.Thread(target=update_mission, args=(location,))
             u.start()
         elif(message[:4] == 'MISS'):
             timestamp = message[5:]
-            m = threading.Thread(target = send_mission,args = (timestamp,))
+            m = threading.Thread(target=send_mission, args=(timestamp,))
             m.start()
 
-    #add a callback for receive data
+    # add a callback for receive data
     my_device.add_data_received_callback(data_receive_callback)
 
-    socket_a.on('land',set_mode_LAND)
-    socket_a.on('rtl',set_mode_RTL)
-    socket_a.on('initiateFlight',start_mission)
-    socket_a.on('positions',update_mission)
-    socket_a.on('getMission',send_mission)
-    socket_a.on('mission',new_mission_update_send)
-    socket_a.on('homePosition',send_home_position)
-    socket_a.on('reconnect',on_reconnect)
+    socket_a.on('land', set_mode_LAND)
+    socket_a.on('rtl', set_mode_RTL)
+    socket_a.on('initiateFlight', start_mission)
+    socket_a.on('positions', update_mission)
+    socket_a.on('getMission', send_mission)
+    socket_a.on('mission', new_mission_update_send)
+    socket_a.on('homePosition', send_home_position)
+    socket_a.on('reconnect', on_reconnect)
 
     input()
     sched.shutdown()
     my_device.close()
 
+
 if __name__ == '__main__':
     main()
-
-

@@ -108,7 +108,6 @@ def set_mode_RTL(var=None):
 
 
 def set_mode_LAND(var=None):
-    print("Came here")
     time = var['timestamp']
     if not is_timestamp_received(time):
         timestamp_add(time)
@@ -142,22 +141,32 @@ def update_mission(location=None):
 def new_mission_update_send(var):
     time = var['timestamp']
     mission_waypoints = var['mission']['waypoints']
+    print(mission_waypoints)
     vehicle.new_mission_upload(mission_waypoints)
 
 
 def send_mission(var=None):
-    #time = var['timestamp']
-    if not is_timestamp_received(var):
-        timestamp_add(var)
-        global waypoint
-        global _send_mission_once
+    print("get mission command received", var)
+    global waypoint
+    global _send_mission_once
+
+    if not var:
+        waypoint = vehicle.flight_plan
+        _send_mission_once = True
+        print("Sending mission initially")
+        return
+
+    time = var['timestamp']
+
+    if not is_timestamp_received(time):
+        timestamp_add(time)
         try:
             waypoint = vehicle.flight_plan
             _send_mission_once = True
             print("Mission send")
         except Exception as e:
             print("eror sending mission", str(e))
-            err = {'context': 'Mission', 'msg': 'Mission FIle could not be read'}
+            err = {'context': 'Mission', 'msg': 'Mission File could not be read'}
             logger.error(err)
     else:
         print("Send mission came again so ignoring")
@@ -279,12 +288,28 @@ def send_data():
         global waypoint
         _data_s = str(waypoint)
         _data_d = waypoint
-        print("Waypoints:", waypoint)
+        #print("Waypoints:", waypoint)
+        print(waypoint)
         sending_label = 'getMission'
         _send_mission_once = False
 
     n = 255  # chunk length
+    # Send data through XBee
+    XBee_send(chunk = n, _data_s = _data_s)
 
+    # send data through Internet
+    GSM_send(sending_label = sending_label, _data_d =_data_d)
+
+def GSM_send(sending_label,_data_d):
+    try:
+        socket_a.emit(sending_label, _data_d)
+        socket.wait(seconds=0.7)
+    except Exception as e:
+        err = {'context': 'Internet', 'msg': 'Drone data not sent from GSM!!'}
+        logging.critical(err)
+
+def XBee_send(chunk,_data_s):
+    n = chunk
     # send start byte through XBee
     try:
         START_DATA = "$st@"
@@ -312,15 +337,6 @@ def send_data():
         err = {'context': 'XBee',
                'msg': 'Drone data not sent from xbee, END_BYTE!!'}
         logging.critical(err)
-
-    # send data through Internet
-    try:
-        socket_a.emit(sending_label, _data_d)
-        socket.wait(seconds=0.7)
-    except Exception as e:
-        err = {'context': 'Internet', 'msg': 'Drone data not sent from GSM!!'}
-        logging.critical(err)
-
 
 def hello(var):
     print("Timestamp for hello:", var)

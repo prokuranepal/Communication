@@ -295,10 +295,13 @@ def send_data():
 
     n = 255  # chunk length
     # Send data through XBee
-    XBee_send(chunk = n, _data_s = _data_s)
-
+    xbee = threading.Thread(target=XBee_send,args=(n, _data_s,))
+    gsm = threading.Thread(target=GSM_send, args=(sending_label, _data_d,))
+    # XBee_send(chunk = n, _data_s = _data_s)
+    xbee.start()
+    gsm.start()
     # send data through Internet
-    GSM_send(sending_label = sending_label, _data_d =_data_d)
+    # GSM_send(sending_label = sending_label, _data_d =_data_d)
 
 def GSM_send(sending_label,_data_d):
     try:

@@ -8,15 +8,6 @@ import time
 from prokura_drone.drone import Drone
 from command_queue import CommandQueue
 
-# Import for missions
-# import upload_mission as up
-# import mission as mi
-
-# Import regarding XBee
-from digi.xbee.devices import XBeeDevice
-from digi.xbee.devices import RemoteXBeeDevice
-from digi.xbee.models.address import XBee64BitAddress
-
 # Import regarding scheduler tasks
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -53,20 +44,12 @@ logger.setLevel(logging.WARNING)
 sched = BackgroundScheduler()
 
 # configure for XBee
-PORT = '/dev/ttyUSB0'
-BAUD_RATE = 230400
-REMOTE_DRONE_ID = "0013A2004108025F"
 DRONE_ID = '#d1'
 data = {}
 waypoint = {}
 _send_mission_once = None
 sending_label = None
 command_queue = CommandQueue()
-
-my_device = XBeeDevice(PORT, BAUD_RATE)
-my_device.open()
-remote_device = RemoteXBeeDevice(
-    my_device, XBee64BitAddress.from_hex_string(REMOTE_DRONE_ID))
 
 # Connect to socket
 print("Connecting to server")
@@ -294,11 +277,9 @@ def send_data():
         _send_mission_once = False
 
     n = 255  # chunk length
-    # Send data through XBee
-    xbee = threading.Thread(target=XBee_send,args=(n, _data_s,))
+
     gsm = threading.Thread(target=GSM_send, args=(sending_label, _data_d,))
-    # XBee_send(chunk = n, _data_s = _data_s)
-    xbee.start()
+    
     gsm.start()
     # send data through Internet
     # GSM_send(sending_label = sending_label, _data_d =_data_d)
@@ -311,35 +292,6 @@ def GSM_send(sending_label,_data_d):
         err = {'context': 'Internet', 'msg': 'Drone data not sent from GSM!!'}
         logging.critical(err)
 
-def XBee_send(chunk,_data_s):
-    n = chunk
-    # send start byte through XBee
-    try:
-        START_DATA = "$st@"
-        my_device.send_data(remote_device, START_DATA)
-    except Exception as e:
-        err = {'context': 'XBee',
-               'msg': 'Drone data not sent from xbee, START_BYTE!!'}
-        logging.critical(err)
-
-    # send data through XBee
-    try:
-        # create a chunk of data and send
-        for i in range(0, len(_data_s), n):
-            DATA_TO_SEND = _data_s[i:i+n]
-            my_device.send_data(remote_device, DATA_TO_SEND)
-    except Exception as e:
-        err = {'context': 'XBee', 'msg': 'Drone data not sent from xbee, DATA!!'}
-        logging.critical(err)
-
-    # send end byte through XBee
-    try:
-        END_DATA = "$ed@"
-        my_device.send_data(remote_device, END_DATA)
-    except Exception as e:
-        err = {'context': 'XBee',
-               'msg': 'Drone data not sent from xbee, END_BYTE!!'}
-        logging.critical(err)
 
 def hello(var):
     print("Timestamp for hello:", var)
@@ -404,9 +356,7 @@ def main():
             m = threading.Thread(target=send_mission, args=(timestamp,))
             m.start()
 
-    # add a callback for receive data
-    my_device.add_data_received_callback(data_receive_callback)
-
+    
     socket_a.on('land', set_mode_LAND)
     socket_a.on('rtl', set_mode_RTL)
     socket_a.on('initiateFlight', start_mission)
